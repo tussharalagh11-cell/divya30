@@ -77,24 +77,69 @@ const reasons = [
 ];
 
 const tiles = [
-  { emoji:'🌅', label:'Early mornings',   sub:'The good ones',       bg:'#FFD600' },
-  { emoji:'🎉', label:'Every celebration',sub:'She showed up',       bg:'#FF3CAC', col:'#FFFBE8' },
-  { emoji:'🌿', label:'Outdoor days',     sub:'In full bloom',       bg:'#AAEE44' },
-  { emoji:'☕', label:'Coffee runs',       sub:'Always iced',         bg:'#FF5C1A', col:'#FFFBE8' },
-  { emoji:'🌙', label:'Late nights',       sub:'Worth every hour',   bg:'#3B6EF8', col:'#FFFBE8' },
-  { emoji:'🎶', label:'Playlist era',      sub:'She curated it',     bg:'#00C9B1' },
-  { emoji:'🌸', label:'Spring days',       sub:'Best season',        bg:'#FF3CAC', col:'#FFFBE8' },
-  { emoji:'🏔️', label:'Road trips',        sub:'Everywhere she went',bg:'#AAEE44' },
-  { emoji:'🥂', label:'The big moments',   sub:'All of them',        bg:'#FFD600' },
+  { emoji:'🌅', label:'Early mornings',     sub:'The good ones',          bg:'#FFD600' },
+  { emoji:'🎉', label:'Every celebration',  sub:'She showed up',          bg:'#FF3CAC', col:'#FFFBE8' },
+  { emoji:'🌿', label:'Outdoor days',       sub:'In full bloom',          bg:'#AAEE44' },
+  { emoji:'☕', label:'Coffee runs',         sub:'Always iced',            bg:'#FF5C1A', col:'#FFFBE8' },
+  { emoji:'🌙', label:'Late nights',         sub:'Worth every hour',       bg:'#3B6EF8', col:'#FFFBE8' },
+  { emoji:'🎶', label:'Playlist era',        sub:'She curated it',         bg:'#00C9B1' },
+  { emoji:'🌸', label:'Spring days',         sub:'Best season',            bg:'#FF3CAC', col:'#FFFBE8' },
+  { emoji:'🏔️', label:'Road trips',          sub:'Everywhere she went',    bg:'#AAEE44' },
+  { emoji:'🥂', label:'The big moments',     sub:'All of them',            bg:'#FFD600' },
+  { emoji:'🎂', label:'Birthday energy',     sub:'All year round',         bg:'#FF5C1A', col:'#FFFBE8' },
+  { emoji:'🌈', label:'The chaotic days',    sub:'Still worth it',         bg:'#3B6EF8', col:'#FFFBE8' },
+  { emoji:'📸', label:'Every photo',         sub:'She looks great',        bg:'#FFD600' },
+  { emoji:'🦋', label:'The glow-up',         sub:'Every single year',      bg:'#FF3CAC', col:'#FFFBE8' },
+  { emoji:'🌊', label:'Summer days',         sub:'Water & sunshine',       bg:'#00C9B1' },
+  { emoji:'🎯', label:'The focused era',     sub:'She knew what she wanted',bg:'#AAEE44' },
+  { emoji:'🕯️', label:'Quiet nights',        sub:'Soft and good',          bg:'#FF5C1A', col:'#FFFBE8' },
+  { emoji:'🌻', label:'Golden moments',      sub:'Warm & bright',          bg:'#FFD600' },
+  { emoji:'🎪', label:'Every adventure',     sub:'Big or small',           bg:'#FF3CAC', col:'#FFFBE8' },
+  { emoji:'💌', label:'The love era',        sub:'She gave it fully',      bg:'#3B6EF8', col:'#FFFBE8' },
+  { emoji:'🍂', label:'Autumn walks',        sub:'Her favourite season',   bg:'#FF5C1A', col:'#FFFBE8' },
+  { emoji:'🎠', label:'The fun ones',        sub:'Laughing all night',     bg:'#AAEE44' },
+  { emoji:'🌙', label:'Midnight talks',      sub:'The real ones',          bg:'#3B6EF8', col:'#FFFBE8' },
+  { emoji:'🦚', label:'Style era',           sub:'Always herself',         bg:'#00C9B1' },
+  { emoji:'🍊', label:'The orange days',     sub:'Bright & chaotic',       bg:'#FF5C1A', col:'#FFFBE8' },
+  { emoji:'🌺', label:'Slow Sundays',        sub:'The sacred ones',        bg:'#FF3CAC', col:'#FFFBE8' },
+  { emoji:'⚡', label:'The electric nights', sub:'Unforgettable',          bg:'#FFD600' },
+  { emoji:'🎵', label:'That one song',       sub:'She knows the one',      bg:'#AAEE44' },
+  { emoji:'🫶', label:'Her people',          sub:'Lucky to know her',      bg:'#FF3CAC', col:'#FFFBE8' },
+  { emoji:'✨', label:'The magic moments',   sub:'Too many to count',      bg:'#3B6EF8', col:'#FFFBE8' },
+  { emoji:'🎂', label:'Today',               sub:'Happy 30th Divya',       bg:'#FF5C1A', col:'#FFFBE8' },
 ];
 
 const msgs = [
-  { text:'You are the most completely yourself person I have ever known.',            badge:'💛' },
-  { text:'You never needed to be louder. You already filled the room.',               badge:'🌸' },
-  { text:'Some people make everywhere they go feel like somewhere worth being. That\'s you.', badge:'🌍' },
-  { text:'Thirty is just more of you being unreasonably good at life.',               badge:'✨' },
-  { text:'I hope today is as loud and bright and joyful as you are.',                 badge:'🎊' },
-  { text:'Everyone who has ever known you is better for it. That\'s the truth.',      badge:'🧡' },
+  { text:'You are the most completely yourself person I have ever known.',                     badge:'💛' },
+  { text:'You never needed to be louder. You already filled the room.',                        badge:'🌸' },
+  { text:'Some people make everywhere they go feel like somewhere worth being. That\'s you.',  badge:'🌍' },
+  { text:'Thirty is just more of you being unreasonably good at life.',                        badge:'✨' },
+  { text:'I hope today is as loud and bright and joyful as you are.',                          badge:'🎊' },
+  { text:'Everyone who has ever known you is better for it. That\'s the truth.',               badge:'🧡' },
+  { text:'You have this rare ability to make ordinary days feel like something worth remembering.', badge:'🌅' },
+  { text:'The way you show up for people — fully, without holding back — that\'s not common.', badge:'💫' },
+  { text:'You\'ve always known exactly who you are. That\'s rarer than you think.',            badge:'🦋' },
+  { text:'Your laugh should be a protected national treasure.',                                 badge:'😂' },
+  { text:'You make every playlist better just by being in the room.',                          badge:'🎶' },
+  { text:'Thirty years of Divya and somehow the world still isn\'t ready.',                    badge:'⚡' },
+  { text:'The energy you bring into a space lingers long after you leave.',                    badge:'🌊' },
+  { text:'You have impeccable taste and zero apologies about it.',                             badge:'🦚' },
+  { text:'Your honesty is one of the most generous things about you.',                         badge:'🌙' },
+  { text:'Every city you\'ve lived in is better for having had you.',                          badge:'🍁' },
+  { text:'You turn plans into adventures without even trying.',                                 badge:'🗺️' },
+  { text:'The way you remember things — details, moments, people — it matters.',               badge:'🌻' },
+  { text:'You have carried hard things with more grace than you give yourself credit for.',    badge:'🌷' },
+  { text:'People feel seen when they talk to you. That\'s a gift.',                            badge:'👁️' },
+  { text:'You\'ve never once been boring. Not for a single second.',                           badge:'🎪' },
+  { text:'The version of you at 30 is the best one yet. And that\'s saying something.',        badge:'🥂' },
+  { text:'You have a way of making people feel like they\'re exactly where they should be.',   badge:'🏠' },
+  { text:'Your confidence has always looked good on you.',                                      badge:'🔥' },
+  { text:'You are somebody\'s favourite person. More than one somebody\'s.',                   badge:'💌' },
+  { text:'The world is genuinely more interesting with you in it.',                            badge:'🌈' },
+  { text:'You\'ve always moved at your own pace and it\'s always been exactly right.',         badge:'🎯' },
+  { text:'Thirty candles. Thirty years. Still the most alive person in the room.',             badge:'🕯️' },
+  { text:'Whatever comes next — you\'re ready. You always have been.',                         badge:'🚀' },
+  { text:'Happy birthday, Divya. From someone who is very glad you exist.',                    badge:'🎂' },
 ];
 
 const accs = ['#FF5C1A','#FFD600','#FF3CAC','#00C9B1','#3B6EF8','#AAEE44'];
@@ -180,9 +225,11 @@ msgs.forEach((m, i) => {
 const cur = document.getElementById('cur');
 const cur2 = document.getElementById('cur2');
 let mx=0, my=0, rx=0, ry=0, ci=0;
+cur.style.opacity='0'; cur2.style.opacity='0';
 document.addEventListener('mousemove', e => {
   mx = e.clientX; my = e.clientY;
   cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+  cur.style.opacity='1'; cur2.style.opacity='0.7';
 });
 setInterval(() => { ci = (ci+1) % accs.length; cur.style.background = accs[ci]; }, 400);
 (function animCur() {
