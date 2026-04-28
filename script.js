@@ -12,21 +12,21 @@
 
 const videos = [
   {
-    src:     'videos/memory-1.mp4',
+    src:     'videos/WhatsApp Video 2026-04-28 at 10.33.08 AM.mp4',
     poster:  '',                          // optional: 'videos/thumb1.jpg'
     label:   'Memory 01',
     caption: 'Add your caption here',
     bg:      '#FF5C1A',
   },
   {
-    src:     'videos/memory-2.mp4',
+    src:     'videos/WhatsApp Video 2026-04-28 at 10.33.22 AM.mp4',
     poster:  '',
     label:   'Memory 02',
     caption: 'Add your caption here',
     bg:      '#FF3CAC',
   },
   {
-    src:     'videos/memory-3.mp4',
+    src:     'videos/WhatsApp Video 2026-04-28 at 10.39.41 AM.mp4',
     poster:  '',
     label:   'Memory 03',
     caption: 'Add your caption here',
