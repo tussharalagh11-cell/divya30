@@ -617,3 +617,41 @@ section, .mq-wrap, .cbar { position: relative; z-index: 2; }
 .vid-card:hover .vid-play-btn {
   transform: translate(-50%,-50%) scale(1.15);
   .vid-grid, .mgrid, .rgrid { grid-template-columns: 1fr; }
+
+  .photo-tile {
+  background: var(--dark);
+}
+
+.photo-img {
+  width: 100%;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  background: var(--dark);
+}
+
+.lb-photo {
+  width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  display: block;
+  border-radius: 18px;
+  border: 3px solid var(--dark);
+  background: var(--dark);
+}
+
+.vid-thumb-placeholder {
+  position: relative;
+  overflow: hidden;
+}
+
+.vid-play-btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.vid-card:hover .vid-play-btn {
+  transform: translate(-50%,-50%) scale(1.15);
+}
