@@ -6,9 +6,11 @@
 /* FILE SETUP:
    Put ALL images directly inside /public/images/
    Put ALL videos directly inside /public/videos/
+   Keep both photos and videos inside /public/videos/ for this premium build.
 
    Example:
    public/images/WhatsApp Image 2026-04-28 at 10.33.29 AM.jpeg
+   public/videos/WhatsApp Image 2026-04-28 at 10.33.29 AM.jpeg
    public/videos/WhatsApp Video 2026-04-28 at 10.33.08 AM.mp4
 */
 
@@ -34,11 +36,7 @@ const imageNames = [
   'WhatsApp Image 2026-04-28 at 10.39.30 AM.jpeg',
 
   'WhatsApp Image 2026-04-28 at 10.39.31 AM (1).jpeg',
-  'WhatsApp Image 2026-04-28 at 10.39.31 AM (2).jpeg',
-  'WhatsApp Image 2026-04-28 at 10.39.31 AM (3).jpeg',
-  'WhatsApp Image 2026-04-28 at 10.39.31 AM.jpeg',
-
-  'WhatsApp Image 2026-04-28 at 10.39.32 AM.jpeg',
+@@ -42,50 +41,65 @@ const imageNames = [
   'WhatsApp Image 2026-04-28 at 10.39.41 AM.jpeg',
 
   'WhatsApp Image 2026-04-28 at 10.39.42 AM (1).jpeg',
@@ -62,6 +60,21 @@ const videoNames = [
   'WhatsApp Video 2026-04-28 at 10.33.08 AM.mp4',
   'WhatsApp Video 2026-04-28 at 10.33.22 AM.mp4',
   'WhatsApp Video 2026-04-28 at 10.39.41 AM.mp4',
+];
+
+const videoCaptions = [
+  'A little movie from your universe',
+  'The laugh, the chaos, the glow',
+  'Proof that joy follows you around',
+];
+
+const frameTitles = [
+  'Golden Hour You',
+  'Main Character Moment',
+  'Soft Chaos Aesthetic',
+  'Memory in Motion',
+  'Smile That Ends Arguments',
+  'Unscripted & Iconic',
 ];
 
 /* ─── DATA ──────────────────────────────────────── */
@@ -89,25 +102,7 @@ const reasons = [
   ['🏔️','Never let the hard days define her'],
   ['🎯','Knows what she\'s about'],
   ['🧃','Somehow always has the right snack'],
-  ['🌙','Still curious about everything'],
-  ['🦚','Gets dressed for herself, no one else'],
-  ['🥂','Makes every celebration feel bigger'],
-  ['🌷','Gets better with time — seriously'],
-  ['🎪','Thirty years and still surprising people'],
-  ['✨','She doesn\'t need this list to know her worth'],
-  ['🎂','But she gets one anyway — Happy 30th!'],
-];
-
-const msgs = [
-  { text:'You are the most completely yourself person I have ever known.', badge:'💛' },
-  { text:'You never needed to be louder. You already filled the room.', badge:'🌸' },
-  { text:'Some people make everywhere they go feel like somewhere worth being. That\'s you.', badge:'🌍' },
-  { text:'Thirty is just more of you being unreasonably good at life.', badge:'✨' },
-  { text:'I hope today is as loud and bright and joyful as you are.', badge:'🎊' },
-  { text:'Everyone who has ever known you is better for it. That\'s the truth.', badge:'🧡' },
-  { text:'You have this rare ability to make ordinary days feel like something worth remembering.', badge:'🌅' },
-  { text:'The way you show up for people — fully, without holding back — that\'s not common.', badge:'💫' },
-  { text:'You\'ve always known exactly who you are. That\'s rarer than you think.', badge:'🦋' },
+@@ -111,51 +125,51 @@ const msgs = [
   { text:'Your laugh should be a protected national treasure.', badge:'😂' },
   { text:'You make every playlist better just by being in the room.', badge:'🎶' },
   { text:'Thirty years of Divya and somehow the world still isn\'t ready.', badge:'⚡' },
@@ -134,6 +129,7 @@ const msgs = [
 const accs = ['#FF5C1A','#FFD600','#FF3CAC','#00C9B1','#3B6EF8','#AAEE44'];
 const cc = [...accs, '#FFFBE8'];
 const mqW = ['✦ HAPPY 30TH DIVYA','🎉 THIRTY IS EVERYTHING','✦ CHAOTIC GOOD','💛 SHE SHOWED UP','✦ HAPPY BIRTHDAY DIVYA','🌸 THIRTY YEARS OF HER','✦ FROM TUSSHAR WITH LOVE'];
+const mqW = ['✦ PREMIUM BIRTHDAY EDITION','🎬 DIVYA IN CINEMA MODE','✦ ART-LED CELEBRATION','💛 THIRTY IN GOLD','✦ ICON ENERGY ONLY','🌸 CURATED WITH LOVE','✦ FROM TUSSHAR'];
 const mqC = ['o','y','p','t','l'];
 
 function asset(path) {
@@ -159,10 +155,7 @@ buildMQ('mq2');
 const rg = document.getElementById('rgrid');
 if (rg) {
   reasons.forEach(([em, txt], i) => {
-    const c = document.createElement('div');
-    c.className = 'rc';
-    c.setAttribute('data-n', i + 1);
-    c.style.transitionDelay = `${i * 0.04}s`;
+@@ -166,82 +180,82 @@ if (rg) {
     c.innerHTML = `<span class="re">${em}</span><div class="rtx">${txt}</div>`;
     c.addEventListener('mouseenter', () => { c.style.borderColor = accs[i % accs.length]; });
     c.addEventListener('mouseleave', () => { c.style.borderColor = ''; });
@@ -190,6 +183,8 @@ if (vg) {
       <div class="vid-info">
         <div class="vid-label">Memory ${String(i + 1).padStart(2, '0')}</div>
         <div class="vid-caption">Tap to play this memory</div>
+        <div class="vid-label">Gift Reel ${String(i + 1).padStart(2, '0')}</div>
+        <div class="vid-caption">${videoCaptions[i % videoCaptions.length]}</div>
       </div>
     `;
 
@@ -203,6 +198,7 @@ const ms = document.getElementById('masonry');
 if (ms) {
   imageNames.forEach((name, i) => {
     const src = asset(`images/${name}`);
+    const src = asset(`videos/${name}`);
 
     const tile = document.createElement('div');
     tile.className = 'ptile photo-tile';
@@ -220,6 +216,7 @@ if (ms) {
 
     tile.addEventListener('click', e => {
       openPhoto(src, `Photo ${String(i + 1).padStart(2, '0')}`, 'A frame from Divya’s world.');
+      openPhoto(src, frameTitles[i % frameTitles.length], 'A premium frame from Divya’s world — saved as part of your birthday gift.');
       confetti(e.clientX, e.clientY, 20);
     });
 
@@ -245,499 +242,3 @@ if (mg) {
 const cur = document.getElementById('cur');
 const cur2 = document.getElementById('cur2');
 let mx = 0, my = 0, rx = 0, ry = 0, ci = 0;
-
-if (cur && cur2) {
-  cur.style.opacity = '0';
-  cur2.style.opacity = '0';
-
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX;
-    my = e.clientY;
-    cur.style.left = `${mx}px`;
-    cur.style.top = `${my}px`;
-    cur.style.opacity = '1';
-    cur2.style.opacity = '0.7';
-  });
-
-  setInterval(() => {
-    ci = (ci + 1) % accs.length;
-    cur.style.background = accs[ci];
-  }, 400);
-
-  function animCur() {
-    rx += (mx - rx) * 0.14;
-    ry += (my - ry) * 0.14;
-    cur2.style.left = `${rx}px`;
-    cur2.style.top = `${ry}px`;
-    requestAnimationFrame(animCur);
-  }
-  animCur();
-
-  document.addEventListener('mousedown', () => {
-    cur.style.transform = 'translate(-50%,-50%) scale(2)';
-  });
-
-  document.addEventListener('mouseup', () => {
-    cur.style.transform = 'translate(-50%,-50%) scale(1)';
-  });
-}
-
-/* ─── CONFETTI ────────────────────────────────────── */
-function confetti(x, y, n = 40) {
-  for (let i = 0; i < n; i++) {
-    const el = document.createElement('div');
-    el.className = 'conf';
-
-    const ang = Math.random() * Math.PI * 2;
-    const dist = 80 + Math.random() * 180;
-
-    el.style.cssText = `
-      left:${x}px;
-      top:${y}px;
-      background:${cc[Math.floor(Math.random() * cc.length)]};
-      --dx:${Math.cos(ang) * dist}px;
-      animation-delay:${Math.random() * 0.2}s;
-      border-radius:${Math.random() > 0.5 ? '50%' : '2px'};
-      width:${6 + Math.random() * 8}px;
-      height:${6 + Math.random() * 8}px;
-    `;
-
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 3500);
-  }
-}
-
-/* big 30 */
-const bigNum = document.getElementById('bignum');
-if (bigNum) {
-  bigNum.addEventListener('click', e => {
-    confetti(e.clientX, e.clientY, 80);
-    for (let i = 0; i < 6; i++) {
-      setTimeout(() => {
-        confetti(Math.random() * window.innerWidth, Math.random() * window.innerHeight * 0.5, 25);
-      }, i * 200);
-    }
-  });
-}
-
-/* global ripple */
-document.addEventListener('click', e => {
-  const r = document.createElement('div');
-  r.className = 'rip';
-  r.style.cssText = `
-    left:${e.clientX}px;
-    top:${e.clientY}px;
-    width:40px;
-    height:40px;
-    border:2px solid ${cc[Math.floor(Math.random() * cc.length)]};
-  `;
-  document.body.appendChild(r);
-  setTimeout(() => r.remove(), 900);
-});
-
-/* ─── LIGHTBOX ───────────────────────────────────── */
-function openPhoto(src, title, text) {
-  const lbe = document.getElementById('lbe');
-  const lbt = document.getElementById('lbt');
-  const lbtx = document.getElementById('lbtx');
-  const lbox = document.getElementById('lbox');
-
-  if (!lbe || !lbt || !lbtx || !lbox) return;
-
-  lbe.innerHTML = `<img src="${src}" class="lb-photo" alt="${title}">`;
-  lbt.textContent = title;
-  lbtx.textContent = text;
-  lbox.style.display = 'flex';
-}
-
-function closeLB() {
-  const lbox = document.getElementById('lbox');
-  const lbe = document.getElementById('lbe');
-  if (lbox) lbox.style.display = 'none';
-  if (lbe) lbe.innerHTML = '';
-}
-
-/* ─── VIDEO MODAL ────────────────────────────────── */
-function openVid(src) {
-  const player = document.getElementById('vmodal-player');
-  const modal = document.getElementById('vmodal');
-
-  if (!player || !modal) return;
-
-  player.src = src;
-  player.load();
-  player.play().catch(() => {});
-  modal.classList.add('open');
-}
-
-function closeVid() {
-  const player = document.getElementById('vmodal-player');
-  const modal = document.getElementById('vmodal');
-
-  if (!player || !modal) return;
-
-  player.pause();
-  player.removeAttribute('src');
-  player.load();
-  modal.classList.remove('open');
-}
-
-/* ─── INTERSECTION OBSERVER ──────────────────────── */
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) e.target.classList.add('vis');
-  });
-}, { threshold: 0.08 });
-
-setTimeout(() => {
-  document.querySelectorAll('.rc,.ptile,.mc,.fu,.vid-card,.letter-body p').forEach(el => obs.observe(el));
-}, 100);
-
-/* ─── LOAD BURST ──────────────────────────────────── */
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    for (let i = 0; i < 4; i++) {
-      setTimeout(() => {
-        confetti(Math.random() * window.innerWidth, window.innerHeight * 0.3 + Math.random() * 200, 30);
-      }, i * 350);
-    }
-  }, 700);
-});
-
-/* ═══════════════════════════════════════════════════
-   BIRTHDAY CAKE — Canvas
-   ═══════════════════════════════════════════════════ */
-const canvas = document.getElementById('cake-canvas');
-
-if (canvas) {
-  const ctx = canvas.getContext('2d');
-  const W = 520, H = 400;
-  canvas.width = W;
-  canvas.height = H;
-
-  const TOTAL = 30;
-  const candleData = [];
-  let candlesLit = false;
-  let candlesLeft = TOTAL;
-  let wishMade = false;
-
-  function initCandles() {
-    candleData.length = 0;
-
-    const rows = [
-      { y:195, count:12, xStart:90, gap:29 },
-      { y:255, count:10, xStart:110, gap:31 },
-      { y:310, count:8, xStart:130, gap:33 },
-    ];
-
-    rows.forEach(row => {
-      for (let i = 0; i < row.count; i++) {
-        candleData.push({
-          x: row.xStart + i * row.gap,
-          baseY: row.y,
-          lit: false,
-          blown: false,
-          flicker: Math.random() * Math.PI * 2,
-        });
-      }
-    });
-  }
-
-  initCandles();
-
-  function roundRect(c, x, y, w, h, r, fill, stroke, lw) {
-    c.save();
-    c.beginPath();
-    c.roundRect(x, y, w, h, r);
-    if (fill) {
-      c.fillStyle = fill;
-      c.fill();
-    }
-    if (stroke) {
-      c.strokeStyle = stroke;
-      c.lineWidth = lw;
-      c.stroke();
-    }
-    c.restore();
-  }
-
-  function drawDots(c, x, y, w, h, col, n) {
-    c.save();
-
-    for (let i = 0; i < n; i++) {
-      const dx = x + 20 + (i / (n - 1)) * (w - 40);
-      c.beginPath();
-      c.arc(dx, y + h - 10, 5, 0, Math.PI * 2);
-      c.fillStyle = col;
-      c.strokeStyle = '#0F0A00';
-      c.lineWidth = 1.5;
-      c.fill();
-      c.stroke();
-    }
-
-    c.restore();
-  }
-
-  function drawCake() {
-    ctx.clearRect(0, 0, W, H);
-
-    ctx.save();
-    ctx.beginPath();
-    ctx.ellipse(260, 368, 160, 18, 0, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(0,0,0,0.12)';
-    ctx.fill();
-    ctx.restore();
-
-    ctx.save();
-    ctx.beginPath();
-    ctx.ellipse(260, 358, 170, 22, 0, 0, Math.PI * 2);
-    ctx.fillStyle = '#fff';
-    ctx.strokeStyle = '#0F0A00';
-    ctx.lineWidth = 3;
-    ctx.fill();
-    ctx.stroke();
-    ctx.restore();
-
-    roundRect(ctx, 95, 315, 330, 55, 12, '#FF5C1A', '#0F0A00', 3);
-    drawDots(ctx, 95, 315, 330, 55, '#FFD600', 8);
-
-    roundRect(ctx, 115, 255, 290, 62, 12, '#FF3CAC', '#0F0A00', 3);
-    drawDots(ctx, 115, 255, 290, 62, '#AAEE44', 7);
-
-    roundRect(ctx, 140, 196, 240, 62, 12, '#FFD600', '#0F0A00', 3);
-    drawDots(ctx, 140, 196, 240, 62, '#FF3CAC', 6);
-
-    ctx.save();
-    ctx.font = 'bold 38px "Anybody", sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillStyle = '#FFFBE8';
-    ctx.strokeStyle = '#0F0A00';
-    ctx.lineWidth = 5;
-    ctx.strokeText('30', 260, 286);
-    ctx.fillText('30', 260, 286);
-    ctx.restore();
-
-    candleData.forEach((c, idx) => {
-      const cx = c.x;
-      const cy = c.baseY - 30;
-
-      if (c.blown) {
-        ctx.save();
-        ctx.beginPath();
-        ctx.roundRect(cx - 4, cy, 8, 30, 3);
-        ctx.fillStyle = '#999';
-        ctx.strokeStyle = '#0F0A00';
-        ctx.lineWidth = 1.5;
-        ctx.fill();
-        ctx.stroke();
-        ctx.restore();
-
-        const t = Date.now() / 1000;
-        for (let k = 0; k < 3; k++) {
-          const sy = cy - 5 - k * 10 - ((t * 20 + k * 15) % 30);
-          const sr = 3 + k * 1.5;
-          const a = Math.max(0, 0.35 - k * 0.1 - ((t * 0.5) % 0.35));
-
-          ctx.save();
-          ctx.beginPath();
-          ctx.arc(cx + (k % 2 ? 2 : -2), sy, sr, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(180,180,180,${a})`;
-          ctx.fill();
-          ctx.restore();
-        }
-
-        return;
-      }
-
-      ctx.save();
-      ctx.beginPath();
-      ctx.roundRect(cx - 4, cy, 8, 30, 3);
-      ctx.fillStyle = accs[idx % accs.length];
-      ctx.strokeStyle = '#0F0A00';
-      ctx.lineWidth = 1.5;
-      ctx.fill();
-      ctx.stroke();
-      ctx.restore();
-
-      ctx.save();
-      ctx.beginPath();
-      ctx.moveTo(cx, cy);
-      ctx.lineTo(cx, cy - 5);
-      ctx.strokeStyle = '#0F0A00';
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
-      ctx.restore();
-
-      if (c.lit) {
-        c.flicker += 0.18;
-        const f = Math.sin(c.flicker) * 2;
-
-        ctx.save();
-        ctx.beginPath();
-        ctx.moveTo(cx, cy - 5);
-        ctx.bezierCurveTo(cx + 5 + f, cy - 14, cx + 6, cy - 20, cx, cy - 26);
-        ctx.bezierCurveTo(cx - 6, cy - 20, cx - 5 - f, cy - 14, cx, cy - 5);
-        ctx.fillStyle = 'rgba(255,180,0,0.9)';
-        ctx.fill();
-        ctx.restore();
-
-        ctx.save();
-        ctx.beginPath();
-        ctx.moveTo(cx, cy - 8);
-        ctx.bezierCurveTo(cx + 2, cy - 14, cx + 2, cy - 18, cx, cy - 22);
-        ctx.bezierCurveTo(cx - 2, cy - 18, cx - 2, cy - 14, cx, cy - 8);
-        ctx.fillStyle = 'rgba(255,240,100,0.95)';
-        ctx.fill();
-        ctx.restore();
-      }
-    });
-  }
-
-  function animCake() {
-    drawCake();
-    requestAnimationFrame(animCake);
-  }
-
-  animCake();
-
-  window.lightCandles = function lightCandles() {
-    if (candlesLit) return;
-
-    candlesLit = true;
-    candlesLeft = TOTAL;
-
-    candleData.forEach((c, i) => {
-      setTimeout(() => {
-        c.lit = true;
-
-        if (i === TOTAL - 1) {
-          const lightBtn = document.getElementById('btn-light');
-          const blowBtn = document.getElementById('btn-blow');
-          const mhint = document.getElementById('mhint');
-          const msg = document.getElementById('cake-msg');
-
-          if (lightBtn) lightBtn.style.display = 'none';
-          if (blowBtn) blowBtn.style.display = 'inline-block';
-          if (mhint) mhint.style.display = 'block';
-          if (msg) msg.textContent = 'All 30 candles lit ✨ Now make a wish!';
-
-          tryMic();
-        }
-      }, i * 60);
-    });
-  };
-
-  window.blowOut = function blowOut() {
-    if (!candlesLit || wishMade) return;
-
-    wishMade = true;
-
-    const blowBtn = document.getElementById('btn-blow');
-    const mhint = document.getElementById('mhint');
-
-    if (blowBtn) blowBtn.style.display = 'none';
-    if (mhint) mhint.style.display = 'none';
-
-    candleData.forEach((c, i) => {
-      setTimeout(() => {
-        c.lit = false;
-        c.blown = true;
-        candlesLeft--;
-
-        if (candlesLeft === 0) {
-          setTimeout(() => {
-            const msg = document.getElementById('cake-msg');
-            if (msg) msg.innerHTML = '🎉 Happy 30th, Divya! 🎉';
-
-            for (let k = 0; k < 8; k++) {
-              setTimeout(() => {
-                confetti(Math.random() * window.innerWidth, 200 + Math.random() * 200, 40);
-              }, k * 150);
-            }
-          }, 300);
-        }
-      }, i * 40 + Math.random() * 20);
-    });
-  };
-
-  function tryMic() {
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return;
-
-    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-      const ac = new AudioContext();
-      const src = ac.createMediaStreamSource(stream);
-      const an = ac.createAnalyser();
-      an.fftSize = 512;
-      src.connect(an);
-
-      const buf = new Uint8Array(an.frequencyBinCount);
-      let blowCount = 0;
-
-      function checkBlow() {
-        if (wishMade) {
-          stream.getTracks().forEach(t => t.stop());
-          return;
-        }
-
-        an.getByteFrequencyData(buf);
-        const avg = buf.reduce((s, v) => s + v, 0) / buf.length;
-
-        if (avg > 35) blowCount++;
-        else blowCount = 0;
-
-        if (blowCount > 4) {
-          window.blowOut();
-          stream.getTracks().forEach(t => t.stop());
-          return;
-        }
-
-        requestAnimationFrame(checkBlow);
-      }
-
-      checkBlow();
-    }).catch(() => {});
-  }
-
-  canvas.addEventListener('click', e => {
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = W / rect.width;
-    const scaleY = H / rect.height;
-
-    const cx = (e.clientX - rect.left) * scaleX;
-    const cy = (e.clientY - rect.top) * scaleY;
-
-    if (!candlesLit) {
-      window.lightCandles();
-      return;
-    }
-
-    if (!wishMade) {
-      candleData.forEach(c => {
-        if (c.lit && Math.abs(c.x - cx) < 22 && Math.abs(c.baseY - 30 - cy) < 44) {
-          c.lit = false;
-          c.blown = true;
-          candlesLeft--;
-
-          if (candlesLeft === 0) {
-            wishMade = true;
-
-            const blowBtn = document.getElementById('btn-blow');
-            const mhint = document.getElementById('mhint');
-            const msg = document.getElementById('cake-msg');
-
-            if (blowBtn) blowBtn.style.display = 'none';
-            if (mhint) mhint.style.display = 'none';
-            if (msg) msg.innerHTML = '🎉 Happy 30th, Divya! 🎉';
-
-            for (let k = 0; k < 8; k++) {
-              setTimeout(() => {
-                confetti(Math.random() * window.innerWidth, 200 + Math.random() * 200, 40);
-              }, k * 150);
-            }
-          }
-        }
-      });
-    }
-  });
-}
