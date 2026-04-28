@@ -7,6 +7,10 @@
 <meta property="og:title" content="Divya is 30 🎉">
 <meta property="og:description" content="Thirty years of being the most alive person in the room.">
 <meta name="theme-color" content="#FFD600">
+<title>Divya: The Premium Birthday Edition ✨</title>
+<meta property="og:title" content="Divya: The Premium Birthday Edition ✨">
+<meta property="og:description" content="An art-led birthday experience crafted in motion.">
+<meta name="theme-color" content="#10131e">
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..125,100..900;1,75..125,100..900&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300;1,9..144,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
@@ -18,27 +22,33 @@
 <!-- TOP MARQUEE -->
 <div class="mq-wrap"><div class="mq-track" id="mq1"></div></div>
 <div class="cbar"><div style="background:var(--orange)"></div><div style="background:var(--yellow)"></div><div style="background:var(--lime)"></div><div style="background:var(--teal)"></div><div style="background:var(--blue)"></div><div style="background:var(--pink)"></div></div>
+<div class="cbar"><div style="background:#d4a94f"></div><div style="background:#d58b9a"></div><div style="background:#7d76ff"></div><div style="background:#67d8d0"></div><div style="background:#f0d18b"></div></div>
 
 <!-- ── HERO ── -->
 <section id="hero">
   <div class="hl">
     <div class="htag">✦ Est. 1996 ✦</div>
+    <div class="htag">✦ Premium Birthday Atelier ✦</div>
     <div class="hname">Divya</div>
     <div class="h30" id="bignum">30</div>
   </div>
   <div class="hr">
     <div class="hbig">The one, the only —<br><strong>thirty years</strong> of being<br>the most alive person<br>in any room she walked into.</div>
     <div class="scroll-hint">↓ keep scrolling ↓</div>
+    <div class="hbig">A handcrafted birthday gift page for someone truly rare — <strong>cinematic, emotional, and one-of-one</strong>.</div>
+    <div class="scroll-hint">↓ this entire page is your gift ↓</div>
   </div>
 </section>
 
 <div class="cbar"><div style="background:var(--blue)"></div><div style="background:var(--pink)"></div><div style="background:var(--orange)"></div><div style="background:var(--yellow)"></div><div style="background:var(--teal)"></div><div style="background:var(--lime)"></div></div>
+<div class="cbar"><div style="background:#67d8d0"></div><div style="background:#d4a94f"></div><div style="background:#7d76ff"></div><div style="background:#d58b9a"></div><div style="background:#f0d18b"></div></div>
 
 <!-- ── 30 REASONS ── -->
 <section id="reasons">
   <div class="rh fu">
     <div class="rn">30</div>
     <div class="rt">reasons<br><strong>Divya</strong> is incredible</div>
+    <div class="rt">curated reasons<br><strong>Divya</strong> is iconic</div>
   </div>
   <div class="rgrid" id="rgrid"></div>
 </section>
@@ -47,6 +57,7 @@
 <section id="letter">
   <div class="letter-inner">
     <div class="letter-tag fu">✦ A message ✦</div>
+    <div class="letter-tag fu">✦ This is your gift ✦</div>
     <div class="letter-title fu">Dear<br><span>Divya.</span></div>
     <div class="letter-body fu">
       <p>I don't think you fully know what it's like to be around you.</p>
@@ -55,6 +66,11 @@
       <p>Thirty years of you is not nearly enough for the world. But it's something. It's a lot, actually.</p>
       <p>You deserve every single thing today brings — every candle, every wish, every person who shows up for you. Because you've always shown up for everyone else.</p>
       <p>Happy birthday, Divya. <strong>Thirty looks exactly right on you.</strong></p>
+      <p>This isn't just a birthday page. It's a gallery room in digital form.</p>
+      <p>Every frame has your energy in it — loud laughter, stylish chaos, and soft moments that hit unexpectedly.</p>
+      <p>The design language is editorial, like a campaign launch. Because thirty is not a milestone for you. It's a headline.</p>
+      <p>You deserve beauty that feels intentional. Light, movement, music, memory — all of it in one place.</p>
+      <p>Happy birthday. This whole website is a wrapped memory box, made just for you.</p>
     </div>
     <div class="letter-sig fu">— Tusshar</div>
   </div>
@@ -67,12 +83,15 @@
 <!-- ── BIRTHDAY CAKE ── -->
 <section id="cake-section">
   <div class="cake-pre">Interactive</div>
+  <div class="cake-pre">Interactive centerpiece</div>
   <div class="cake-title">Make a Wish</div>
   <div class="cake-sub">Light the candles — then blow them out 🎂</div>
+  <div class="cake-sub">Light all 30 candles and blow out the dream ✨</div>
   <canvas id="cake-canvas" width="520" height="400"></canvas>
   <div class="cake-btns">
     <button class="cake-btn" id="btn-light" onclick="lightCandles()">✦ Light the candles</button>
     <button class="cake-btn blow" id="btn-blow" onclick="blowOut()">💨 Blow them out!</button>
+    <button class="cake-btn blow" id="btn-blow" onclick="blowOut()">💨 Blow them out</button>
   </div>
   <div class="mic-hint" id="mhint">or blow into your mic 🎤</div>
   <div id="cake-msg"></div>
@@ -84,6 +103,9 @@
     <div class="vid-pre fu">The Memories</div>
     <div class="vid-title fu">Her in<br><span>Motion.</span></div>
     <div class="vid-sub fu">Add your videos to <code>/public/videos/</code> and update the filenames below in <code>script.js</code></div>
+    <div class="vid-pre fu">The motion archive</div>
+    <div class="vid-title fu">Birthday<br><span>Cinema.</span></div>
+    <div class="vid-sub fu">All assets are pulled from <code>/public/videos/</code> (videos + images).</div>
   </div>
   <div class="vid-grid" id="vid-grid"></div>
 </section>
@@ -94,8 +116,12 @@
     <div class="gtag" style="background:var(--yellow)">📸 The Album</div>
     <div class="gtag" style="background:var(--teal)">30 frames</div>
     <div class="gtag" style="background:var(--pink);color:var(--cream)">click any tile</div>
+    <div class="gtag" style="background:rgba(212,169,79,.15)">📸 Luxury album</div>
+    <div class="gtag" style="background:rgba(103,216,208,.15)">editorial frames</div>
+    <div class="gtag" style="background:rgba(125,118,255,.15)">tap any frame</div>
   </div>
   <div class="gtitle">Photo<br><span>Wall</span></div>
+  <div class="gtitle">Visual<br><span>Gallery</span></div>
   <div class="masonry" id="masonry"></div>
 </section>
 
@@ -103,17 +129,31 @@
 <section id="messages">
   <div class="mtitle fu">Things<br>she should<br>know.</div>
   <div class="msub fu">Thirty truths for thirty years.</div>
+  <div class="mtitle fu">What 30<br>years of you<br>feels like.</div>
+  <div class="msub fu">Premium notes from the people who adore you.</div>
   <div class="mgrid" id="mgrid"></div>
 </section>
 
 <div class="cbar"><div style="background:var(--lime)"></div><div style="background:var(--orange)"></div><div style="background:var(--yellow)"></div><div style="background:var(--blue)"></div><div style="background:var(--pink)"></div><div style="background:var(--teal)"></div></div>
+<div class="cbar"><div style="background:#7d76ff"></div><div style="background:#d58b9a"></div><div style="background:#67d8d0"></div><div style="background:#d4a94f"></div><div style="background:#f0d18b"></div></div>
+<section id="gift-note">
+  <div class="gift-card fu">
+    <div class="gift-kicker">Gift Card</div>
+    <h3>To the birthday girl</h3>
+    <p>This website is your digital gift — every section is a memory, every color is celebration, and every interaction is made to feel like opening something special.</p>
+    <p>Keep this page forever. Revisit it whenever you want to remember how loved you are.</p>
+  </div>
+</section>
 
 <!-- ── CLOSING ── -->
 <section id="closing">
   <div class="cfrom fu">A message from Tusshar</div>
   <div class="cbig fu">You showed up fully,<br>laughed loudly,<br>lived <strong>without apology.</strong></div>
+  <div class="cfrom fu">Final signature</div>
+  <div class="cbig fu">You entered every room like a main character and made everyone else feel like they belonged there too.</div>
   <div class="cname">DIVYA</div>
   <div class="signed">— Happy 30th. You deserve every bit of this. 🧡</div>
+  <div class="signed">— Happy birthday. Sealed with love, always. 🎁</div>
 </section>
 
 <div class="mq-wrap rev pink"><div class="mq-track" id="mq2"></div></div>
