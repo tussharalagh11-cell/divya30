@@ -291,3 +291,36 @@ body {
 @media (max-width: 480px) {
   .masonry { columns: 1; }
 }
+.photo-img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: var(--dark);
+}
+
+.photo-info {
+  padding: 1.25rem;
+  text-align: center;
+  background: inherit;
+}
+
+.photo-tile .te {
+  margin-bottom: 0.5rem;
+}
+
+.vid-thumb-placeholder {
+  position: relative;
+  overflow: hidden;
+}
+
+.vid-play-btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.vid-card:hover .vid-play-btn {
+  transform: translate(-50%,-50%) scale(1.15);
+}
