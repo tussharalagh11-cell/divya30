@@ -147,7 +147,7 @@ const mqW = [
   '💛 SHE SHOWED UP',
   '✦ HAPPY BIRTHDAY DIVYA',
   '🌸 THIRTY YEARS OF HER',
-  '✦ FROM TUSSHAR WITH LOVE',
+  '✦ FROM TUSSHAR',
 ];
 
 const mqC = ['o', 'y', 'p', 't', 'l'];
