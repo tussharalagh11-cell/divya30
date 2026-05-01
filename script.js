@@ -69,7 +69,7 @@ const reasons = [
 
 const tiles = [
   { photo: 'p15', label: 'Baby Divya', sub: 'Where it all began 🌸', bg: '#FF3CAC' },
-  { photo: 'p40', label: 'Baby Divya II', sub: 'Little puffer coat, big smile', bg: '#FFD600' },
+  { photo: 'p40', label: 'Mont Tremblant', sub: 'Living in a postcard 🏔️', bg: '#FFD600' },
 
   { photo: 'p01', label: 'The GUESS era', sub: 'Pink was always right', bg: '#FFD600' },
   { photo: 'p05', label: 'Holi', sub: 'Colour on colour on colour', bg: '#00C9B1' },
@@ -97,8 +97,8 @@ const tiles = [
   { photo: 'p18', label: 'Gas station', sub: 'Sunglasses on head, always', bg: '#3B6EF8' },
 
   { photo: 'p36', label: 'Bear ears filter', sub: 'Lying down, pure cuteness', bg: '#FF3CAC' },
-  { photo: 'p21', label: 'FaceTime laugh', sub: 'Eyes closed, full joy', bg: '#AAEE44' },
-  { photo: 'p22', label: 'FaceTime soft', sub: 'Cheek on hand, pearl bracelet', bg: '#FFD600' },
+  { photo: 'p21', label: 'The bachelorette vibes', sub: 'Jhoola Jhoola', bg: '#AAEE44' },
+  { photo: 'p22', label: 'Vittoria Trattoria ', sub: 'The Italian Dinner', bg: '#FFD600' },
   { photo: 'p23', label: 'Pearl bracelet night', sub: 'Dark & soft, heart watch', bg: '#FF5C1A' },
 
   { photo: 'p03', label: 'Saturday 2:37 PM', sub: 'A perfect ordinary day', bg: '#3B6EF8' },
