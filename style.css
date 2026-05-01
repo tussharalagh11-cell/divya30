@@ -291,3 +291,33 @@ body {
 @media (max-width: 480px) {
   .masonry { columns: 1; }
 }
+
+/* Kill floating decorative/cursor circles on top of photos */
+.photo-card .floating-dot,
+.photo-card .cursor-ring,
+.photo-card .circle,
+.photo-card .decorative-circle,
+.photo-card .blob,
+.photo-card .orb {
+  display: none !important;
+}
+
+/* Make sure images sit above background decorations */
+.photo-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-card img {
+  position: relative;
+  z-index: 2;
+  display: block;
+}
+
+/* Keep text overlays above image if needed */
+.photo-card .photo-copy,
+.photo-card .caption,
+.photo-card .overlay {
+  position: relative;
+  z-index: 3;
+}
