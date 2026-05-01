@@ -89,7 +89,7 @@ const tiles = [
   { photo: 'p27', label: 'Gym selfie', sub: 'Reception lounge vibes', bg: '#FFD600' },
   { photo: 'p28', label: 'Coffee date', sub: 'Denim jacket & warm cup', bg: '#FF5C1A' },
   { photo: 'p37', label: 'Latte art', sub: 'Floral top, that smile', bg: '#3B6EF8' },
-  { photo: 'p30', label: 'Lahori kulfi', sub: 'Falooda sign & a kulfi stick', bg: '#AAEE44' },
+  { photo: 'p30', label: 'Lahori kulfi', sub: 'Falooda & kulfi', bg: '#AAEE44' },
   { photo: 'p39', label: 'Burger & smiles', sub: 'Michael Kors & fries', bg: '#FF3CAC' },
   { photo: 'p19', label: 'Dinner out', sub: 'That laugh mid-bite', bg: '#FF5C1A' },
   { photo: 'p34', label: 'Breakfast laugh', sub: 'Hand over mouth, hotel brunch', bg: '#FFD600' },
