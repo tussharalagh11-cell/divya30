@@ -316,3 +316,26 @@ body {
     object-position: center 8% !important;
   }
 }
+
+/* ── FORCE FIX: THE GUESS ERA FACE CROP ── */
+
+#gallery .ptile.guess-era-fix {
+  height: 420px !important;
+  max-height: 420px !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+/* Move image DOWN so the face is visible */
+#gallery .ptile.guess-era-fix img {
+  width: 100% !important;
+  height: 520px !important;
+  max-width: none !important;
+  max-height: none !important;
+
+  object-fit: cover !important;
+  object-position: center top !important;
+
+  transform: translateY(55px) scale(1.02) !important;
+  display: block !important;
+}
