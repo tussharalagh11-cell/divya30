@@ -1,495 +1,341 @@
-/* ═══════════════════════════════════════════════════
-   DIVYA IS 30 — script.js
-   ═══════════════════════════════════════════════════
-
-   TO ADD YOUR VIDEOS:
-   1. Drop your .mp4 / .webm files into /public/videos/
-   2. Edit the `videos` array below — update filename, label, caption
-   3. Optionally add a poster image (thumbnail) in /public/videos/
-      and set poster: 'videos/your-thumbnail.jpg'
-
-   ═══════════════════════════════════════════════════ */
-
-const videos = [
-  {
-    src:     'videos/memory-1.mp4',
-    poster:  '',                          // optional: 'videos/thumb1.jpg'
-    label:   'Memory 01',
-    caption: 'Add your caption here',
-    bg:      '#FF5C1A',
-  },
-  {
-    src:     'videos/memory-2.mp4',
-    poster:  '',
-    label:   'Memory 02',
-    caption: 'Add your caption here',
-    bg:      '#FF3CAC',
-  },
-  {
-    src:     'videos/memory-3.mp4',
-    poster:  '',
-    label:   'Memory 03',
-    caption: 'Add your caption here',
-    bg:      '#FFD600',
-  },
-  {
-    src:     'videos/memory-4.mp4',
-    poster:  '',
-    label:   'Memory 04',
-    caption: 'Add your caption here',
-    bg:      '#00C9B1',
-  },
-  // Add more entries by copying the block above ↑
-];
-
-/* ─── DATA ──────────────────────────────────────── */
-const reasons = [
-  ['🌊','She never half-does anything'],
-  ['☀️','That laugh — contagious from 3 rooms away'],
-  ['🌻','Remembers everyone\'s order'],
-  ['🎨','Makes every space more colourful'],
-  ['🌙','Honest even when it\'s hard'],
-  ['⚡','The energy she brings into a room'],
-  ['🍁','Knows how to make a city feel like home'],
-  ['🎶','Her taste in everything, actually'],
-  ['🌸','Knows exactly what she wants'],
-  ['🔥','Doesn\'t apologise for taking up space'],
-  ['🧡','Shows up when it counts'],
-  ['💛','The way she says people\'s names'],
-  ['🌿','Curiosity that never switched off'],
-  ['🎉','Birthday girl energy — all year round'],
-  ['🌈','Makes boring things fun'],
-  ['🦋','Changed a little every year, always better'],
-  ['☕','Has an opinion on everything, and it\'s usually right'],
-  ['🌺','Her sense of style is just hers'],
-  ['🌟','Genuinely funny — actually funny, not \'ha okay\' funny'],
-  ['🍊','Turns plans into adventures'],
-  ['🏔️','Never let the hard days define her'],
-  ['🎯','Knows what she\'s about'],
-  ['🧃','Somehow always has the right snack'],
-  ['🌙','Still curious about everything'],
-  ['🦚','Gets dressed for herself, no one else'],
-  ['🥂','Makes every celebration feel bigger'],
-  ['🌷','Gets better with time — seriously'],
-  ['🎪','Thirty years and still surprising people'],
-  ['✨','She doesn\'t need this list to know her worth'],
-  ['🎂','But she gets one anyway — Happy 30th!'],
-];
-
-const tiles = [
-  { photo:'p15', label:'Baby Divya',         sub:'Where it all began 🌸',         bg:'#FF3CAC' },
-  { photo:'p40', label:'Luge adventure',       sub:'Pink off-shoulder & a blue helmet', bg:'#FFD600' },
-  { photo:'p01', label:'The GUESS era',       sub:'Pink was always right',          bg:'#FFD600' },
-  { photo:'p05', label:'Holi',                sub:'Colour on colour on colour',     bg:'#00C9B1' },
-  { photo:'p25', label:'Navratri red',        sub:'That smile at the garba',        bg:'#FF3CAC' },
-  { photo:'p02', label:'Navratri white',      sub:'Day 2 — White ♡',              bg:'#3B6EF8' },
-  { photo:'p04', label:'Green lehenga',       sub:'Effortlessly stunning',          bg:'#FF5C1A' },
-  { photo:'p06', label:'The lehenga II',      sub:'She wore it like a queen',       bg:'#AAEE44' },
-  { photo:'p16', label:'Orange lehenga',      sub:'She showed up',                  bg:'#FF3CAC' },
-  { photo:'p38', label:'Red gown',            sub:'The dress that stopped traffic', bg:'#FF5C1A' },
-  { photo:'p31', label:'Navy blazer',         sub:'That smile, always',             bg:'#3B6EF8' },
-  { photo:'p33', label:'Navy gown',           sub:'Silk on the floor, so elegant',  bg:'#FFD600' },
-  { photo:'p35', label:'Squad goals',         sub:'7 girls, 7 outfits, one night',  bg:'#00C9B1' },
-  { photo:'p26', label:'Henna & pear',        sub:'Mehndi hand, mischief smile',    bg:'#AAEE44' },
-  { photo:'p32', label:'Making rotis',        sub:'Striped dress, open flame',      bg:'#FF3CAC' },
-  { photo:'p27', label:'Gym selfie',          sub:'Reception lounge vibes',         bg:'#FFD600' },
-  { photo:'p28', label:'Coffee date',         sub:'Denim jacket & warm cup',        bg:'#FF5C1A' },
-  { photo:'p37', label:'Latte art',           sub:'Floral top, that smile',         bg:'#3B6EF8' },
-  { photo:'p30', label:'Lahori kulfi',        sub:'Falooda sign & a kulfi stick',   bg:'#AAEE44' },
-  { photo:'p39', label:'Burger & smiles',     sub:'Michael Kors & fries',           bg:'#FF3CAC' },
-  { photo:'p19', label:'Dinner out',          sub:'That laugh mid-bite',            bg:'#FF5C1A' },
-  { photo:'p34', label:'Breakfast laugh',     sub:'Hand over mouth, hotel brunch',  bg:'#FFD600' },
-  { photo:'p17', label:'Pizza in Europe',     sub:'Hiding nothing but joy',         bg:'#00C9B1' },
-  { photo:'p18', label:'Gas station',         sub:'Sunglasses on head, always',     bg:'#3B6EF8' },
-  { photo:'p36', label:'Bear ears filter',    sub:'Lying down, pure cuteness',      bg:'#FF3CAC' },
-  { photo:'p21', label:'Vittoria dinner',      sub:'Candlelit, Louis Vuitton & bread', bg:'#AAEE44' },
-  { photo:'p22', label:'FaceTime soft',       sub:'Cheek on hand, pearl bracelet',  bg:'#FFD600' },
-  { photo:'p23', label:'Pearl bracelet night',sub:'Dark & soft, heart watch',       bg:'#FF5C1A' },
-  { photo:'p03', label:'Saturday 2:37 PM',    sub:'A perfect ordinary day',         bg:'#3B6EF8' },
-  { photo:'p20', label:'Today',               sub:'Happy 30th Divya ✨',            bg:'#FF3CAC' },
-];
-
-const msgs = [
-  { text:'You are the most completely yourself person I have ever known.',                     badge:'💛' },
-  { text:'You never needed to be louder. You already filled the room.',                        badge:'🌸' },
-  { text:'Some people make everywhere they go feel like somewhere worth being. That\'s you.',  badge:'🌍' },
-  { text:'Thirty is just more of you being unreasonably good at life.',                        badge:'✨' },
-  { text:'I hope today is as loud and bright and joyful as you are.',                          badge:'🎊' },
-  { text:'Everyone who has ever known you is better for it. That\'s the truth.',               badge:'🧡' },
-  { text:'You have this rare ability to make ordinary days feel like something worth remembering.', badge:'🌅' },
-  { text:'The way you show up for people — fully, without holding back — that\'s not common.', badge:'💫' },
-  { text:'You\'ve always known exactly who you are. That\'s rarer than you think.',            badge:'🦋' },
-  { text:'Your laugh should be a protected national treasure.',                                 badge:'😂' },
-  { text:'You make every playlist better just by being in the room.',                          badge:'🎶' },
-  { text:'Thirty years of Divya and somehow the world still isn\'t ready.',                    badge:'⚡' },
-  { text:'The energy you bring into a space lingers long after you leave.',                    badge:'🌊' },
-  { text:'You have impeccable taste and zero apologies about it.',                             badge:'🦚' },
-  { text:'Your honesty is one of the most generous things about you.',                         badge:'🌙' },
-  { text:'Every city you\'ve lived in is better for having had you.',                          badge:'🍁' },
-  { text:'You turn plans into adventures without even trying.',                                 badge:'🗺️' },
-  { text:'The way you remember things — details, moments, people — it matters.',               badge:'🌻' },
-  { text:'You have carried hard things with more grace than you give yourself credit for.',    badge:'🌷' },
-  { text:'People feel seen when they talk to you. That\'s a gift.',                            badge:'👁️' },
-  { text:'You\'ve never once been boring. Not for a single second.',                           badge:'🎪' },
-  { text:'The version of you at 30 is the best one yet. And that\'s saying something.',        badge:'🥂' },
-  { text:'You have a way of making people feel like they\'re exactly where they should be.',   badge:'🏠' },
-  { text:'Your confidence has always looked good on you.',                                      badge:'🔥' },
-  { text:'You are somebody\'s favourite person. More than one somebody\'s.',                   badge:'💌' },
-  { text:'The world is genuinely more interesting with you in it.',                            badge:'🌈' },
-  { text:'You\'ve always moved at your own pace and it\'s always been exactly right.',         badge:'🎯' },
-  { text:'Thirty candles. Thirty years. Still the most alive person in the room.',             badge:'🕯️' },
-  { text:'Whatever comes next — you\'re ready. You always have been.',                         badge:'🚀' },
-  { text:'Happy birthday, Divya. From someone who is very glad you exist.',                    badge:'🎂' },
-];
-
-const accs = ['#FF5C1A','#FFD600','#FF3CAC','#00C9B1','#3B6EF8','#AAEE44'];
-const cc   = [...accs, '#FFFBE8'];
-const mqW  = ['✦ HAPPY 30TH DIVYA','🎉 THIRTY IS EVERYTHING','✦ CHAOTIC GOOD','💛 SHE SHOWED UP','✦ HAPPY BIRTHDAY DIVYA','🌸 THIRTY YEARS OF HER','✦ FROM TUSSHAR WITH LOVE'];
-const mqC  = ['o','y','p','t','l'];
-
-/* ─── MARQUEE ────────────────────────────────────── */
-function buildMQ(id) {
-  const el = document.getElementById(id);
-  [...mqW,...mqW,...mqW,...mqW].forEach((t,i) => {
-    const s = document.createElement('span');
-    s.className = 'mi ' + mqC[i % mqC.length];
-    s.textContent = t + '  ';
-    el.appendChild(s);
-  });
+:root {
+  --orange: #FF5C1A;
+  --yellow: #FFD600;
+  --pink:   #FF3CAC;
+  --teal:   #00C9B1;
+  --blue:   #3B6EF8;
+  --lime:   #AAEE44;
+  --cream:  #FFFBE8;
+  --dark:   #0F0A00;
 }
-buildMQ('mq1');
-buildMQ('mq2');
 
-/* ─── REASONS ────────────────────────────────────── */
-const rg = document.getElementById('rgrid');
-reasons.forEach(([em,txt],i) => {
-  const c = document.createElement('div');
-  c.className = 'rc';
-  c.setAttribute('data-n', i+1);
-  c.style.transitionDelay = (i * 0.04) + 's';
-  c.innerHTML = `<span class="re">${em}</span><div class="rtx">${txt}</div>`;
-  c.addEventListener('mouseenter', () => { c.style.borderColor = accs[i % accs.length]; });
-  c.addEventListener('mouseleave', () => { c.style.borderColor = ''; });
-  rg.appendChild(c);
-});
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--dark);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
 
-/* ─── VIDEOS ─────────────────────────────────────── */
-const vg = document.getElementById('vid-grid');
-videos.forEach((v, i) => {
-  const card = document.createElement('div');
-  card.className = 'vid-card';
-  card.style.transitionDelay = (i * 0.1) + 's';
-  card.innerHTML = `
-    <div class="vid-thumb-placeholder" style="background:${v.bg}">
-      ${v.poster ? `<img src="${v.poster}" class="vid-thumb" alt="${v.label}" onerror="this.style.display='none'">` : ''}
-      <div class="vid-play-btn">▶</div>
-    </div>
-    <div class="vid-info">
-      <div class="vid-label">${v.label}</div>
-      <div class="vid-caption">${v.caption}</div>
-    </div>
-  `;
-  card.addEventListener('click', () => openVid(v.src));
-  vg.appendChild(card);
-});
+/* ── CURSOR ── */
+#cur {
+  position: fixed; width: 16px; height: 16px; border-radius: 50%;
+  pointer-events: none; z-index: 9999; transform: translate(-50%,-50%);
+  mix-blend-mode: multiply; transition: background 0.2s, transform 0.1s;
+  background: var(--pink);
+}
+#cur2 {
+  position: fixed; width: 44px; height: 44px; border-radius: 50%;
+  border: 2px solid var(--orange); pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: left 0.18s ease, top 0.18s ease; opacity: 0.7;
+}
 
-/* ─── GALLERY ────────────────────────────────────── */
-const ms = document.getElementById('masonry');
-tiles.forEach((t, i) => {
-  const tile = document.createElement('div');
-  tile.className = 'ptile';
-  tile.style.transitionDelay = (i * 0.07) + 's';
-  const tc = t.col || '#0F0A00';
-  if (t.photo && typeof PHOTOS !== 'undefined' && PHOTOS[t.photo]) {
-    tile.style.background = t.bg;
-    tile.innerHTML = `
-      <div style="position:relative;">
-        <img src="${PHOTOS[t.photo]}" alt="${t.label}" style="width:100%;display:block;object-fit:cover;max-height:340px;">
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:1rem 1.2rem;background:linear-gradient(to top,rgba(0,0,0,0.75),transparent);">
-          <div style="font-family:'Fraunces',serif;font-style:italic;font-size:18px;color:#fff;font-weight:300;">${t.label}</div>
-          <div style="font-family:'Anybody',sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-top:3px;">${t.sub}</div>
-        </div>
-      </div>`;
-  } else {
-    tile.style.background = t.bg;
-    tile.innerHTML = `<div class="ti"><div class="te">${t.emoji||'📸'}</div><div class="tl" style="color:${tc}">${t.label}</div><div class="ts" style="color:${tc}">${t.sub}</div></div>`;
+/* ── COLOUR BAR ── */
+.cbar { display: flex; height: 12px; }
+.cbar div { flex: 1; }
+
+/* ── MARQUEE ── */
+.mq-wrap { background: var(--dark); overflow: hidden; padding: 10px 0; position: relative; z-index: 10; }
+.mq-wrap.rev .mq-track { animation-direction: reverse; }
+.mq-wrap.pink { background: var(--pink); }
+.mq-track { display: flex; animation: mq 22s linear infinite; white-space: nowrap; }
+.mi { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: 15px; letter-spacing: 0.1em; text-transform: uppercase; padding: 0 2rem; }
+.mi.o { color: var(--orange); } .mi.y { color: var(--yellow); }
+.mi.p { color: var(--pink); }  .mi.t { color: var(--teal); } .mi.l { color: var(--lime); }
+.mq-wrap.pink .mi { color: var(--dark); }
+@keyframes mq { to { transform: translateX(-50%); } }
+
+/* ── HERO ── */
+#hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; z-index: 2; overflow: hidden; }
+.hl {
+  background: var(--yellow); display: flex; flex-direction: column;
+  justify-content: center; padding: 6rem 4rem 6rem 5rem; position: relative; overflow: hidden;
+}
+.hl::after {
+  content: ''; position: absolute; right: -60px; top: 0; width: 120px; height: 100%;
+  background: var(--cream); clip-path: polygon(60px 0, 100% 0, 100% 100%, 60px 100%, 0 50%); z-index: 5;
+}
+.htag {
+  font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 11px;
+  letter-spacing: 0.4em; text-transform: uppercase; background: var(--dark);
+  color: var(--yellow); display: inline-block; padding: 6px 14px;
+  border-radius: 100px; margin-bottom: 2rem; width: fit-content;
+}
+.hname {
+  font-family: 'Fraunces', serif; font-style: italic; font-weight: 700;
+  font-size: clamp(72px, 12vw, 130px); line-height: 0.9; color: var(--dark); letter-spacing: -0.02em;
+}
+.h30 {
+  font-family: 'Anybody', sans-serif; font-weight: 900;
+  font-size: clamp(100px, 18vw, 200px); line-height: 0.85; color: var(--orange);
+  letter-spacing: -0.04em; text-shadow: 6px 6px 0 var(--dark);
+  cursor: pointer; user-select: none; display: inline-block;
+  animation: wobble 4s ease-in-out infinite;
+}
+.h30:hover { animation: none; transform: scale(1.05) rotate(-2deg); }
+@keyframes wobble { 0%,100% { transform: rotate(-1deg); } 50% { transform: rotate(2deg); } }
+.hr {
+  background: var(--pink); display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  padding: 6rem 5rem 6rem 7rem; gap: 2rem;
+}
+.hbig {
+  font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
+  font-size: clamp(26px, 3.5vw, 46px); color: var(--cream); line-height: 1.25;
+}
+.hbig strong { color: var(--yellow); font-weight: 700; font-style: normal; }
+.scroll-hint {
+  font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 11px;
+  letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,251,232,0.5);
+}
+
+/* ── REASONS ── */
+#reasons { background: var(--dark); padding: 8rem 5vw; position: relative; z-index: 2; }
+.rh { display: flex; align-items: flex-end; gap: 2rem; margin-bottom: 5rem; border-bottom: 2px solid rgba(255,255,255,0.1); padding-bottom: 2rem; }
+.rn { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: 100px; line-height: 1; color: var(--yellow); opacity: 0.15; }
+.rt { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(36px,5vw,64px); font-weight: 300; color: var(--cream); }
+.rt strong { color: var(--pink); font-style: normal; font-weight: 700; }
+.rgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 2px; }
+.rc {
+  padding: 2.5rem; border: 1px solid rgba(255,255,255,0.07);
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.5s ease, transform 0.5s ease, background 0.2s;
+  position: relative; overflow: hidden; cursor: default;
+}
+.rc.vis { opacity: 1; transform: translateY(0); }
+.rc:hover { background: rgba(255,255,255,0.04); }
+.rc::before {
+  content: attr(data-n); font-family: 'Anybody', sans-serif; font-weight: 900;
+  font-size: 80px; position: absolute; top: -10px; right: 10px;
+  opacity: 0.06; line-height: 1; color: white;
+}
+.re { font-size: 32px; margin-bottom: 1rem; display: block; }
+.rtx { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: 21px; color: var(--cream); line-height: 1.3; }
+.rc:hover .rtx { color: var(--yellow); }
+
+/* ── LOVE LETTER ── */
+#letter {
+  background: var(--dark);
+  padding: 8rem 5vw;
+  position: relative; z-index: 2; overflow: hidden;
+}
+.letter-inner {
+  max-width: 780px; margin: 0 auto;
+  position: relative; z-index: 2;
+}
+.letter-tag {
+  font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 11px;
+  letter-spacing: 0.4em; text-transform: uppercase; color: var(--yellow);
+  margin-bottom: 2rem;
+}
+.letter-title {
+  font-family: 'Anybody', sans-serif; font-weight: 900;
+  font-size: clamp(56px, 10vw, 120px); line-height: 0.85;
+  color: var(--cream); letter-spacing: -0.03em; margin-bottom: 3rem;
+}
+.letter-title span { color: var(--pink); }
+.letter-body {
+  display: flex; flex-direction: column; gap: 1.5rem;
+}
+.letter-body p {
+  font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
+  font-size: clamp(20px, 2.5vw, 28px); line-height: 1.6; color: rgba(255,251,232,0.85);
+  border-left: 3px solid var(--orange); padding-left: 2rem;
+  opacity: 0; transform: translateX(-20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.letter-body p.vis { opacity: 1; transform: translateX(0); }
+.letter-body p strong { color: var(--yellow); font-style: normal; font-weight: 700; }
+.letter-sig {
+  font-family: 'Anybody', sans-serif; font-weight: 900;
+  font-size: clamp(32px, 5vw, 56px); color: var(--teal);
+  margin-top: 3rem; letter-spacing: -0.02em;
+}
+/* blobs */
+.blob { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 1; }
+.b1 { width: 400px; height: 400px; background: rgba(255,60,172,0.08); top: -100px; right: -100px; }
+.b2 { width: 300px; height: 300px; background: rgba(255,214,0,0.06); bottom: 0; left: -80px; }
+.b3 { width: 200px; height: 200px; background: rgba(0,201,177,0.07); top: 50%; right: 10%; }
+
+/* ── CAKE ── */
+#cake-section {
+  background: var(--blue); padding: 8rem 5vw;
+  position: relative; z-index: 2; text-align: center;
+}
+.cake-pre { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(255,251,232,0.5); margin-bottom: 1rem; }
+.cake-title { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: clamp(48px,8vw,96px); line-height: 0.9; color: var(--yellow); text-shadow: 5px 5px 0 var(--dark); letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+.cake-sub { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; color: var(--cream); opacity: 0.8; margin-bottom: 3rem; }
+#cake-canvas { display: block; margin: 0 auto; width: 100%; max-width: 520px; height: auto; border-radius: 16px; cursor: pointer; background: transparent; }
+.cake-btns { margin-top: 2rem; }
+.cake-btn {
+  font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 13px;
+  letter-spacing: 0.3em; text-transform: uppercase; padding: 14px 36px;
+  border-radius: 100px; border: 3px solid var(--dark); cursor: pointer;
+  transition: all 0.2s; margin: 0.5rem;
+}
+#btn-light { background: var(--yellow); color: var(--dark); }
+#btn-light:hover { transform: translateY(-3px); box-shadow: 4px 4px 0 var(--dark); }
+#btn-blow { background: var(--pink); color: var(--cream); display: none; }
+#btn-blow:hover { transform: translateY(-3px); box-shadow: 4px 4px 0 var(--dark); }
+.mic-hint { font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; color: rgba(255,251,232,0.5); margin-top: 1rem; display: none; }
+#cake-msg { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--yellow); margin-top: 2rem; min-height: 2.5rem; }
+
+/* ── VIDEOS ── */
+#videos { background: var(--cream); padding: 8rem 5vw; position: relative; z-index: 2; }
+.vid-header { margin-bottom: 4rem; }
+.vid-pre { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(15,10,0,0.4); margin-bottom: 0.5rem; }
+.vid-title { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: clamp(48px,8vw,96px); line-height: 0.9; letter-spacing: -0.03em; margin-bottom: 1rem; }
+.vid-title span { color: var(--orange); }
+.vid-sub { font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgba(15,10,0,0.4); }
+.vid-sub code { background: rgba(15,10,0,0.07); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+.vid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap: 1.5rem; }
+.vid-card {
+  border: 3px solid var(--dark); border-radius: 20px; overflow: hidden;
+  cursor: pointer; position: relative;
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.2s;
+}
+.vid-card.vis { opacity: 1; transform: translateY(0); }
+.vid-card:hover { box-shadow: 8px 8px 0 var(--dark); transform: translate(-4px,-4px); }
+.vid-thumb {
+  width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;
+  background: var(--dark);
+}
+.vid-thumb-placeholder {
+  width: 100%; aspect-ratio: 16/9;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem;
+}
+.vid-play-btn {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--cream); border: 3px solid var(--dark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; transition: transform 0.2s;
+}
+.vid-card:hover .vid-play-btn { transform: scale(1.15); }
+.vid-info { padding: 1.25rem 1.5rem; background: var(--cream); }
+.vid-label { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.05em; text-transform: uppercase; }
+.vid-caption { font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; color: rgba(15,10,0,0.5); margin-top: 4px; }
+
+/* ── GALLERY ── */
+#gallery { background: var(--cream); padding: 6rem 5vw; position: relative; z-index: 2; }
+.gtags { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.gtag { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; border: 2px solid var(--dark); }
+.gtitle { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: clamp(48px,8vw,96px); line-height: 0.9; letter-spacing: -0.03em; margin-bottom: 3rem; }
+.gtitle span { color: var(--pink); }
+.masonry { columns: 3; column-gap: 1rem; }
+.ptile { break-inside: avoid; margin-bottom: 1rem; border: 3px solid var(--dark); border-radius: 16px; overflow: hidden; cursor: pointer; opacity: 0; transform: scale(0.9); transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.2s; }
+.ptile.vis { opacity: 1; transform: scale(1); }
+.ptile:hover { box-shadow: 8px 8px 0 var(--dark); transform: translate(-4px,-4px); }
+.ti { padding: 2.5rem 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; min-height: 180px; text-align: center; }
+.te { font-size: 36px; }
+.tl { font-family: 'Fraunces', serif; font-style: italic; font-size: 20px; font-weight: 300; }
+.ts { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.5; }
+
+/* ── MESSAGES ── */
+#messages { background: var(--orange); padding: 8rem 5vw; position: relative; z-index: 2; }
+.mtitle { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: clamp(48px,8vw,100px); line-height: 0.85; color: var(--cream); text-shadow: 5px 5px 0 var(--dark); letter-spacing: -0.03em; margin-bottom: 1rem; }
+.msub { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; color: var(--cream); opacity: 0.7; margin-bottom: 5rem; }
+.mgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1.5rem; }
+.mc { background: var(--cream); border: 3px solid var(--dark); border-radius: 20px; padding: 2.5rem; position: relative; opacity: 0; transform: translateY(40px); transition: all 0.5s ease; cursor: pointer; }
+.mc.vis { opacity: 1; transform: translateY(0); }
+.mc:hover { transform: translateY(-8px) rotate(1deg); box-shadow: 8px 8px 0 var(--dark); }
+.mtx { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: 20px; line-height: 1.5; color: var(--dark); margin-bottom: 1.5rem; }
+.mfr { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--orange); }
+.mbadge { position: absolute; top: 1rem; right: 1rem; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; border: 2px solid var(--dark); }
+
+/* ── CLOSING ── */
+#closing { background: var(--dark); padding: 10rem 5vw; text-align: center; position: relative; z-index: 2; overflow: hidden; }
+.cfrom { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--orange); margin-bottom: 2rem; }
+.cbig { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: clamp(32px,5vw,72px); color: var(--cream); line-height: 1.2; max-width: 900px; margin: 0 auto; }
+.cbig strong { color: var(--yellow); font-style: normal; font-weight: 700; }
+.cname { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: clamp(80px,15vw,180px); color: transparent; -webkit-text-stroke: 2px var(--pink); letter-spacing: -0.03em; line-height: 0.9; margin-top: 2rem; animation: ng 3s ease-in-out infinite; }
+@keyframes ng { 0%,100% { -webkit-text-stroke: 2px var(--pink); } 50% { -webkit-text-stroke: 2px var(--yellow); text-shadow: 0 0 60px rgba(255,214,0,0.3); } }
+.signed { font-family: 'Fraunces', serif; font-style: italic; font-size: 20px; color: rgba(255,251,232,0.4); margin-top: 3rem; }
+
+/* ── UTILS ── */
+.conf { position: fixed; pointer-events: none; z-index: 600; border-radius: 2px; animation: cf 3s ease-in forwards; }
+@keyframes cf { 0% { transform: translate(0,0) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--dx),500px) rotate(600deg); opacity: 0; } }
+.rip { position: fixed; border-radius: 50%; pointer-events: none; z-index: 500; transform: translate(-50%,-50%) scale(0); animation: ro 0.8s ease-out forwards; }
+@keyframes ro { to { transform: translate(-50%,-50%) scale(5); opacity: 0; } }
+.fu { opacity: 0; transform: translateY(40px); transition: all 0.6s ease; }
+.fu.vis { opacity: 1; transform: translateY(0); }
+
+/* ── LIGHTBOX ── */
+#lbox { position: fixed; inset: 0; z-index: 800; background: rgba(15,10,0,0.95); display: none; align-items: center; justify-content: center; padding: 2rem; cursor: pointer; }
+#lbi { max-width: 560px; width: 100%; background: var(--cream); border: 4px solid var(--dark); border-radius: 24px; padding: 3rem; cursor: default; }
+#lbe { font-size: 48px; margin-bottom: 1rem; }
+#lbt { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: 32px; margin-bottom: 1rem; }
+#lbtx { font-family: 'Fraunces', serif; font-style: italic; font-size: 20px; line-height: 1.6; color: rgba(15,10,0,0.7); }
+#lbc { margin-top: 2rem; background: var(--dark); color: var(--cream); border: none; font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; padding: 12px 24px; border-radius: 100px; cursor: pointer; }
+
+/* ── VIDEO MODAL ── */
+#vmodal { position: fixed; inset: 0; z-index: 900; background: rgba(0,0,0,0.97); display: none; align-items: center; justify-content: center; padding: 2rem; cursor: pointer; }
+#vmodal.open { display: flex; }
+#vmodal-inner { max-width: 900px; width: 100%; cursor: default; display: flex; flex-direction: column; gap: 1rem; }
+#vmodal-player { width: 100%; border-radius: 16px; border: 3px solid var(--dark); background: #000; max-height: 80vh; }
+#vmodal-inner button { align-self: center; background: var(--yellow); color: var(--dark); border: 3px solid var(--dark); font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; padding: 12px 28px; border-radius: 100px; cursor: pointer; transition: transform 0.2s; }
+#vmodal-inner button:hover { transform: scale(1.05); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  #hero { grid-template-columns: 1fr; }
+  .hl::after { display: none; }
+  .hl, .hr { padding: 4rem 2rem; }
+  .masonry { columns: 2; }
+  .vid-grid { grid-template-columns: 1fr; }
+  .letter-body p { font-size: 18px; }
+}
+@media (max-width: 480px) {
+  .masonry { columns: 1; }
+}
+
+/* ── TILE-SPECIFIC OVERRIDE: GUESS ERA ── */
+.ptile.show-face {
+  position: relative;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+.ptile.show-face img {
+  width: 100%;
+  height: 430px !important;
+  max-width: none !important;
+  display: block;
+  object-fit: cover !important;
+  object-position: center 10% !important;
+  transform: none !important;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .ptile.show-face img {
+    height: 360px !important;
+    object-position: center 8% !important;
   }
-  tile.addEventListener('click', e => {
-    openLB(t.photo ? '📸' : t.emoji, t.label, t.sub);
-    confetti(e.clientX, e.clientY, 20);
-  });
-  ms.appendChild(tile);
-});
-
-/* ─── MESSAGES ───────────────────────────────────── */
-const mbg = ['#FFD600','#00C9B1','#AAEE44','#3B6EF8','#FFD600','#FF3CAC'];
-const mg = document.getElementById('mgrid');
-msgs.forEach((m, i) => {
-  const c = document.createElement('div');
-  c.className = 'mc';
-  c.style.transitionDelay = (i * 0.1) + 's';
-  c.innerHTML = `<div class="mbadge" style="background:${mbg[i]}">${m.badge}</div><div class="mtx">"${m.text}"</div><div class="mfr">— With love</div>`;
-  c.addEventListener('click', e => confetti(e.clientX, e.clientY, 12));
-  mg.appendChild(c);
-});
-
-/* ─── CURSOR ──────────────────────────────────────── */
-const cur = document.getElementById('cur');
-const cur2 = document.getElementById('cur2');
-let mx=0, my=0, rx=0, ry=0, ci=0;
-cur.style.opacity='0'; cur2.style.opacity='0';
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cur.style.left = mx + 'px'; cur.style.top = my + 'px';
-  cur.style.opacity='1'; cur2.style.opacity='0.7';
-});
-setInterval(() => { ci = (ci+1) % accs.length; cur.style.background = accs[ci]; }, 400);
-(function animCur() {
-  rx += (mx - rx) * 0.14; ry += (my - ry) * 0.14;
-  cur2.style.left = rx + 'px'; cur2.style.top = ry + 'px';
-  requestAnimationFrame(animCur);
-})();
-document.addEventListener('mousedown', () => { cur.style.transform = 'translate(-50%,-50%) scale(2)'; });
-document.addEventListener('mouseup',   () => { cur.style.transform = 'translate(-50%,-50%) scale(1)'; });
-
-/* ─── CONFETTI ────────────────────────────────────── */
-function confetti(x, y, n=40) {
-  for (let i=0; i<n; i++) {
-    const el = document.createElement('div');
-    el.className = 'conf';
-    const ang = Math.random() * Math.PI * 2;
-    const dist = 80 + Math.random() * 180;
-    el.style.cssText = `left:${x}px;top:${y}px;background:${cc[Math.floor(Math.random()*cc.length)]};--dx:${Math.cos(ang)*dist}px;animation-delay:${Math.random()*0.2}s;border-radius:${Math.random()>.5?'50%':'2px'};width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;`;
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 3500);
-  }
 }
 
-/* big 30 */
-document.getElementById('bignum').addEventListener('click', e => {
-  confetti(e.clientX, e.clientY, 80);
-  for (let i=0; i<6; i++)
-    setTimeout(() => confetti(Math.random()*window.innerWidth, Math.random()*window.innerHeight*0.5, 25), i*200);
-});
+/* ── FORCE FIX: THE GUESS ERA FACE CROP ── */
 
-/* global ripple */
-document.addEventListener('click', e => {
-  const r = document.createElement('div'); r.className = 'rip';
-  r.style.cssText = `left:${e.clientX}px;top:${e.clientY}px;width:40px;height:40px;border:2px solid ${cc[Math.floor(Math.random()*cc.length)]};`;
-  document.body.appendChild(r);
-  setTimeout(() => r.remove(), 900);
-});
-
-/* ─── LIGHTBOX ───────────────────────────────────── */
-function openLB(em, ti, tx) {
-  document.getElementById('lbe').textContent = em;
-  document.getElementById('lbt').textContent = ti;
-  document.getElementById('lbtx').textContent = tx;
-  document.getElementById('lbox').style.display = 'flex';
-}
-function closeLB() { document.getElementById('lbox').style.display = 'none'; }
-
-/* ─── VIDEO MODAL ────────────────────────────────── */
-function openVid(src) {
-  const player = document.getElementById('vmodal-player');
-  player.src = src;
-  player.play().catch(() => {});
-  document.getElementById('vmodal').classList.add('open');
-}
-function closeVid() {
-  const player = document.getElementById('vmodal-player');
-  player.pause(); player.src = '';
-  document.getElementById('vmodal').classList.remove('open');
+#gallery .ptile.guess-era-fix {
+  height: 420px !important;
+  max-height: 420px !important;
+  overflow: hidden !important;
+  position: relative !important;
 }
 
-/* ─── INTERSECTION OBSERVER ──────────────────────── */
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
-}, { threshold: 0.08 });
+/* Move image DOWN so the face is visible */
+#gallery .ptile.guess-era-fix img {
+  width: 100% !important;
+  height: 520px !important;
+  max-width: none !important;
+  max-height: none !important;
 
-document.querySelectorAll('.rc,.ptile,.mc,.fu,.vid-card,.letter-body p').forEach(el => obs.observe(el));
+  object-fit: cover !important;
+  object-position: center top !important;
 
-/* ─── LOAD BURST ──────────────────────────────────── */
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    for (let i=0; i<4; i++)
-      setTimeout(() => confetti(Math.random()*window.innerWidth, window.innerHeight*0.3+Math.random()*200, 30), i*350);
-  }, 700);
-});
-
-/* ═══════════════════════════════════════════════════
-   BIRTHDAY CAKE — Canvas
-   ═══════════════════════════════════════════════════ */
-const canvas = document.getElementById('cake-canvas');
-const ctx = canvas.getContext('2d');
-const W = 520, H = 400;
-canvas.width = W; canvas.height = H;
-
-const TOTAL = 30;
-const candleData = [];
-let candlesLit = false, candlesLeft = TOTAL, wishMade = false;
-
-function initCandles() {
-  candleData.length = 0;
-  const rows = [
-    { y:195, count:12, xStart:90,  gap:29 },
-    { y:255, count:10, xStart:110, gap:31 },
-    { y:310, count:8,  xStart:130, gap:33 },
-  ];
-  rows.forEach(row => {
-    for (let i=0; i<row.count; i++) {
-      candleData.push({ x:row.xStart+i*row.gap, baseY:row.y, lit:false, blown:false, flicker:Math.random()*Math.PI*2 });
-    }
-  });
+  transform: translateY(55px) scale(1.02) !important;
+  display: block !important;
 }
-initCandles();
-
-function roundRect(c, x, y, w, h, r, fill, stroke, lw) {
-  c.save(); c.beginPath(); c.roundRect(x,y,w,h,r);
-  if (fill) { c.fillStyle=fill; c.fill(); }
-  if (stroke) { c.strokeStyle=stroke; c.lineWidth=lw; c.stroke(); }
-  c.restore();
-}
-function drawDots(c, x, y, w, h, col, n) {
-  c.save();
-  for (let i=0; i<n; i++) {
-    const dx = x+20+(i/(n-1))*(w-40);
-    c.beginPath(); c.arc(dx, y+h-10, 5, 0, Math.PI*2);
-    c.fillStyle=col; c.strokeStyle='#0F0A00'; c.lineWidth=1.5; c.fill(); c.stroke();
-  }
-  c.restore();
-}
-
-function drawCake() {
-  ctx.clearRect(0, 0, W, H);
-  // shadow
-  ctx.save(); ctx.beginPath(); ctx.ellipse(260,368,160,18,0,0,Math.PI*2);
-  ctx.fillStyle='rgba(0,0,0,0.12)'; ctx.fill(); ctx.restore();
-  // plate
-  ctx.save(); ctx.beginPath(); ctx.ellipse(260,358,170,22,0,0,Math.PI*2);
-  ctx.fillStyle='#fff'; ctx.strokeStyle='#0F0A00'; ctx.lineWidth=3; ctx.fill(); ctx.stroke(); ctx.restore();
-  // tiers
-  roundRect(ctx,95,315,330,55,12,'#FF5C1A','#0F0A00',3); drawDots(ctx,95,315,330,55,'#FFD600',8);
-  roundRect(ctx,115,255,290,62,12,'#FF3CAC','#0F0A00',3); drawDots(ctx,115,255,290,62,'#AAEE44',7);
-  roundRect(ctx,140,196,240,62,12,'#FFD600','#0F0A00',3); drawDots(ctx,140,196,240,62,'#FF3CAC',6);
-  // "30" text
-  ctx.save(); ctx.font='bold 38px "Anybody",sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
-  ctx.fillStyle='#FFFBE8'; ctx.strokeStyle='#0F0A00'; ctx.lineWidth=5;
-  ctx.strokeText('30',260,286); ctx.fillText('30',260,286); ctx.restore();
-  // candles
-  candleData.forEach((c,idx) => {
-    if (c.blown) {
-      // grey snuffed candle + smoke
-      const cx=c.x, cy=c.baseY-30;
-      ctx.save(); ctx.beginPath(); ctx.roundRect(cx-4,cy,8,30,3);
-      ctx.fillStyle='#999'; ctx.strokeStyle='#0F0A00'; ctx.lineWidth=1.5; ctx.fill(); ctx.stroke(); ctx.restore();
-      const t=Date.now()/1000;
-      for (let k=0; k<3; k++) {
-        const sy=cy-5-k*10-((t*20+k*15)%30), sr=3+k*1.5;
-        const a=Math.max(0,0.35-k*0.1-((t*0.5)%0.35));
-        ctx.save(); ctx.beginPath(); ctx.arc(cx+(k%2?2:-2),sy,sr,0,Math.PI*2);
-        ctx.fillStyle=`rgba(180,180,180,${a})`; ctx.fill(); ctx.restore();
-      }
-      return;
-    }
-    const cx=c.x, cy=c.baseY-30;
-    ctx.save(); ctx.beginPath(); ctx.roundRect(cx-4,cy,8,30,3);
-    ctx.fillStyle=accs[idx%accs.length]; ctx.strokeStyle='#0F0A00'; ctx.lineWidth=1.5; ctx.fill(); ctx.stroke(); ctx.restore();
-    // wick
-    ctx.save(); ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(cx,cy-5);
-    ctx.strokeStyle='#0F0A00'; ctx.lineWidth=1.5; ctx.stroke(); ctx.restore();
-    if (c.lit) {
-      c.flicker += 0.18;
-      const f = Math.sin(c.flicker)*2;
-      ctx.save(); ctx.beginPath();
-      ctx.moveTo(cx,cy-5); ctx.bezierCurveTo(cx+5+f,cy-14,cx+6,cy-20,cx,cy-26);
-      ctx.bezierCurveTo(cx-6,cy-20,cx-5-f,cy-14,cx,cy-5);
-      ctx.fillStyle='rgba(255,180,0,0.9)'; ctx.fill(); ctx.restore();
-      ctx.save(); ctx.beginPath();
-      ctx.moveTo(cx,cy-8); ctx.bezierCurveTo(cx+2,cy-14,cx+2,cy-18,cx,cy-22);
-      ctx.bezierCurveTo(cx-2,cy-18,cx-2,cy-14,cx,cy-8);
-      ctx.fillStyle='rgba(255,240,100,0.95)'; ctx.fill(); ctx.restore();
-    }
-  });
-}
-
-(function animCake() { drawCake(); requestAnimationFrame(animCake); })();
-
-function lightCandles() {
-  if (candlesLit) return;
-  candlesLit = true; candlesLeft = TOTAL;
-  candleData.forEach((c,i) => {
-    setTimeout(() => {
-      c.lit = true;
-      if (i === TOTAL-1) {
-        document.getElementById('btn-light').style.display = 'none';
-        document.getElementById('btn-blow').style.display = 'inline-block';
-        document.getElementById('mhint').style.display = 'block';
-        document.getElementById('cake-msg').textContent = 'All 30 candles lit ✨ Now make a wish!';
-        tryMic();
-      }
-    }, i * 60);
-  });
-}
-
-function blowOut() {
-  if (!candlesLit || wishMade) return;
-  wishMade = true;
-  document.getElementById('btn-blow').style.display = 'none';
-  document.getElementById('mhint').style.display = 'none';
-  candleData.forEach((c,i) => {
-    setTimeout(() => {
-      c.lit = false; c.blown = true; candlesLeft--;
-      if (candlesLeft === 0) {
-        setTimeout(() => {
-          document.getElementById('cake-msg').innerHTML = '🎉 Happy 30th, Divya! 🎉';
-          for (let k=0; k<8; k++)
-            setTimeout(() => confetti(Math.random()*window.innerWidth, 200+Math.random()*200, 40), k*150);
-        }, 300);
-      }
-    }, i*40 + Math.random()*20);
-  });
-}
-
-function tryMic() {
-  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return;
-  navigator.mediaDevices.getUserMedia({ audio:true }).then(stream => {
-    const ac = new AudioContext();
-    const src = ac.createMediaStreamSource(stream);
-    const an = ac.createAnalyser(); an.fftSize = 512;
-    src.connect(an);
-    const buf = new Uint8Array(an.frequencyBinCount);
-    let blowCount = 0;
-    function checkBlow() {
-      if (wishMade) { stream.getTracks().forEach(t=>t.stop()); return; }
-      an.getByteFrequencyData(buf);
-      const avg = buf.reduce((s,v)=>s+v,0) / buf.length;
-      if (avg > 35) blowCount++; else blowCount = 0;
-      if (blowCount > 4) { blowOut(); stream.getTracks().forEach(t=>t.stop()); return; }
-      requestAnimationFrame(checkBlow);
-    }
-    checkBlow();
-  }).catch(() => {});
-}
-
-canvas.addEventListener('click', e => {
-  const rect = canvas.getBoundingClientRect();
-  const scaleX = W / rect.width, scaleY = H / rect.height;
-  const cx = (e.clientX - rect.left) * scaleX;
-  const cy = (e.clientY - rect.top) * scaleY;
-  if (!candlesLit) { lightCandles(); return; }
-  if (!wishMade) {
-    candleData.forEach(c => {
-      if (c.lit && Math.abs(c.x-cx)<22 && Math.abs(c.baseY-30-cy)<44) {
-        c.lit=false; c.blown=true; candlesLeft--;
-        if (candlesLeft===0) {
-          wishMade=true;
-          document.getElementById('btn-blow').style.display='none';
-          document.getElementById('mhint').style.display='none';
-          document.getElementById('cake-msg').innerHTML='🎉 Happy 30th, Divya! 🎉';
-          for (let k=0;k<8;k++) setTimeout(()=>confetti(Math.random()*window.innerWidth,200+Math.random()*200,40),k*150);
-        }
-      }
-    });
-  }
-});
