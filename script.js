@@ -1,42 +1,38 @@
 /* ═══════════════════════════════════════════════════
    DIVYA IS 30 — script.js
-   Full fixed version
+   Full fixed version for existing public/photos and public/videos structure
    ═══════════════════════════════════════════════════ */
-
-/* ─── VIDEOS ─────────────────────────────────────── */
 
 const videos = [
   {
-    src: 'videos/memory-1.mp4',
+    src: '/videos/memory-1.mp4',
     poster: '',
     label: 'Memory 01',
     caption: 'Add your caption here',
     bg: '#FF5C1A',
   },
   {
-    src: 'videos/memory-2.mp4',
+    src: '/videos/memory-2.mp4',
     poster: '',
     label: 'Memory 02',
     caption: 'Add your caption here',
     bg: '#FF3CAC',
   },
   {
-    src: 'videos/memory-3.mp4',
+    src: '/videos/memory-3.mp4',
     poster: '',
     label: 'Memory 03',
     caption: 'Add your caption here',
     bg: '#FFD600',
   },
   {
-    src: 'videos/memory-4.mp4',
+    src: '/videos/memory-4.mp4',
     poster: '',
     label: 'Memory 04',
     caption: 'Add your caption here',
     bg: '#00C9B1',
   },
 ];
-
-/* ─── DATA ───────────────────────────────────────── */
 
 const reasons = [
   ['🌊', 'She never half-does anything'],
@@ -171,14 +167,12 @@ function buildMQ(id) {
   });
 }
 
-buildMQ('mq1');
-buildMQ('mq2');
-
 /* ─── REASONS ────────────────────────────────────── */
 
-const rg = getEl('rgrid');
+function buildReasons() {
+  const rg = getEl('rgrid');
+  if (!rg) return;
 
-if (rg) {
   reasons.forEach(([em, txt], i) => {
     const c = document.createElement('div');
     c.className = 'rc';
@@ -204,9 +198,10 @@ if (rg) {
 
 /* ─── VIDEOS ─────────────────────────────────────── */
 
-const vg = getEl('vid-grid');
+function buildVideos() {
+  const vg = getEl('vid-grid');
+  if (!vg) return;
 
-if (vg) {
   videos.forEach((v, i) => {
     const card = document.createElement('div');
     card.className = 'vid-card';
@@ -234,9 +229,30 @@ if (vg) {
 
 /* ─── GALLERY ────────────────────────────────────── */
 
-const ms = getEl('masonry');
+function getPhotoSrc(photoKey) {
+  if (!photoKey) return '';
 
-if (ms) {
+  if (typeof PHOTOS !== 'undefined' && PHOTOS && PHOTOS[photoKey]) {
+    return PHOTOS[photoKey];
+  }
+
+  return '';
+}
+
+function renderFallbackTile(tile, t, tc, message) {
+  tile.innerHTML = `
+    <div class="ti">
+      <div class="te">${t.emoji || '📸'}</div>
+      <div class="tl" style="color:${tc}">${t.label}</div>
+      <div class="ts" style="color:${tc}">${message || t.sub}</div>
+    </div>
+  `;
+}
+
+function buildGallery() {
+  const ms = getEl('masonry');
+  if (!ms) return;
+
   tiles.forEach((t, i) => {
     const tile = document.createElement('div');
     tile.className = 'ptile';
@@ -244,30 +260,15 @@ if (ms) {
     tile.style.background = t.bg;
 
     const tc = t.col || '#0F0A00';
+    const imgSrc = getPhotoSrc(t.photo);
 
-    const hasPhoto =
-      t.photo &&
-      typeof PHOTOS !== 'undefined' &&
-      PHOTOS &&
-      PHOTOS[t.photo];
-
-    if (hasPhoto) {
-      const imgSrc = PHOTOS[t.photo];
-
+    if (imgSrc) {
       tile.innerHTML = `
         <div style="position:relative;">
           <img
             src="${imgSrc}"
             alt="${t.label}"
             style="width:100%;display:block;object-fit:cover;max-height:340px;"
-            onerror="
-              this.closest('.ptile').innerHTML =
-              '<div class=&quot;ti&quot;>' +
-              '<div class=&quot;te&quot;>📸</div>' +
-              '<div class=&quot;tl&quot; style=&quot;color:${tc}&quot;>${t.label}</div>' +
-              '<div class=&quot;ts&quot; style=&quot;color:${tc}&quot;>Missing image: ${imgSrc}</div>' +
-              '</div>';
-            "
           >
           <div style="position:absolute;bottom:0;left:0;right:0;padding:1rem 1.2rem;background:linear-gradient(to top,rgba(0,0,0,0.75),transparent);">
             <div style="font-family:'Fraunces',serif;font-style:italic;font-size:18px;color:#fff;font-weight:300;">${t.label}</div>
@@ -275,16 +276,14 @@ if (ms) {
           </div>
         </div>
       `;
+
+      const img = tile.querySelector('img');
+
+      img.addEventListener('error', () => {
+        renderFallbackTile(tile, t, tc, `Missing image: ${imgSrc}`);
+      });
     } else {
-      tile.innerHTML = `
-        <div class="ti">
-          <div class="te">${t.emoji || '📸'}</div>
-          <div class="tl" style="color:${tc}">${t.label}</div>
-          <div class="ts" style="color:${tc}">
-            ${t.photo ? `Missing PHOTOS.${t.photo}` : t.sub}
-          </div>
-        </div>
-      `;
+      renderFallbackTile(tile, t, tc, t.photo ? `Missing PHOTOS.${t.photo}` : t.sub);
     }
 
     tile.addEventListener('click', (e) => {
@@ -298,10 +297,12 @@ if (ms) {
 
 /* ─── MESSAGES ───────────────────────────────────── */
 
-const mbg = ['#FFD600', '#00C9B1', '#AAEE44', '#3B6EF8', '#FFD600', '#FF3CAC'];
-const mg = getEl('mgrid');
+function buildMessages() {
+  const mg = getEl('mgrid');
+  if (!mg) return;
 
-if (mg) {
+  const mbg = ['#FFD600', '#00C9B1', '#AAEE44', '#3B6EF8', '#FFD600', '#FF3CAC'];
+
   msgs.forEach((m, i) => {
     const c = document.createElement('div');
     c.className = 'mc';
@@ -323,16 +324,18 @@ if (mg) {
 
 /* ─── CURSOR ─────────────────────────────────────── */
 
-const cur = getEl('cur');
-const cur2 = getEl('cur2');
+function setupCursor() {
+  const cur = getEl('cur');
+  const cur2 = getEl('cur2');
 
-let mx = 0;
-let my = 0;
-let rx = 0;
-let ry = 0;
-let ci = 0;
+  if (!cur || !cur2) return;
 
-if (cur && cur2) {
+  let mx = 0;
+  let my = 0;
+  let rx = 0;
+  let ry = 0;
+  let ci = 0;
+
   cur.style.opacity = '0';
   cur2.style.opacity = '0';
 
@@ -402,11 +405,10 @@ function confetti(x, y, n = 40) {
   }
 }
 
-/* ─── BIG 30 CONFETTI ────────────────────────────── */
+function setupBigNumber() {
+  const bignum = getEl('bignum');
+  if (!bignum) return;
 
-const bignum = getEl('bignum');
-
-if (bignum) {
   bignum.addEventListener('click', (e) => {
     confetti(e.clientX, e.clientY, 80);
 
@@ -422,26 +424,26 @@ if (bignum) {
   });
 }
 
-/* ─── GLOBAL RIPPLE ──────────────────────────────── */
+function setupGlobalRipple() {
+  document.addEventListener('click', (e) => {
+    const r = document.createElement('div');
+    r.className = 'rip';
 
-document.addEventListener('click', (e) => {
-  const r = document.createElement('div');
-  r.className = 'rip';
+    r.style.cssText = `
+      left:${e.clientX}px;
+      top:${e.clientY}px;
+      width:40px;
+      height:40px;
+      border:2px solid ${cc[Math.floor(Math.random() * cc.length)]};
+    `;
 
-  r.style.cssText = `
-    left:${e.clientX}px;
-    top:${e.clientY}px;
-    width:40px;
-    height:40px;
-    border:2px solid ${cc[Math.floor(Math.random() * cc.length)]};
-  `;
+    document.body.appendChild(r);
 
-  document.body.appendChild(r);
-
-  setTimeout(() => {
-    r.remove();
-  }, 900);
-});
+    setTimeout(() => {
+      r.remove();
+    }, 900);
+  });
+}
 
 /* ─── LIGHTBOX ───────────────────────────────────── */
 
@@ -499,46 +501,34 @@ window.closeVid = closeVid;
 
 /* ─── INTERSECTION OBSERVER ───────────────────────── */
 
-const obs = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('vis');
-      }
-    });
-  },
-  { threshold: 0.08 }
-);
+function setupObserver() {
+  const targets = document.querySelectorAll('.rc, .ptile, .mc, .fu, .vid-card, .letter-body p');
 
-document
-  .querySelectorAll('.rc, .ptile, .mc, .fu, .vid-card, .letter-body p')
-  .forEach((el) => {
-    obs.observe(el);
-  });
+  if (!('IntersectionObserver' in window)) {
+    targets.forEach((el) => el.classList.add('vis'));
+    return;
+  }
 
-/* ─── LOAD BURST ─────────────────────────────────── */
+  const obs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('vis');
+        }
+      });
+    },
+    { threshold: 0.08 }
+  );
 
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    for (let i = 0; i < 4; i++) {
-      setTimeout(() => {
-        confetti(
-          Math.random() * window.innerWidth,
-          window.innerHeight * 0.3 + Math.random() * 200,
-          30
-        );
-      }, i * 350);
-    }
-  }, 700);
-});
+  targets.forEach((el) => obs.observe(el));
+}
 
-/* ═══════════════════════════════════════════════════
-   BIRTHDAY CAKE — Canvas
-   ═══════════════════════════════════════════════════ */
+/* ─── CAKE ───────────────────────────────────────── */
 
-const canvas = getEl('cake-canvas');
+function setupCake() {
+  const canvas = getEl('cake-canvas');
+  if (!canvas) return;
 
-if (canvas) {
   const ctx = canvas.getContext('2d');
 
   const W = 520;
@@ -575,8 +565,6 @@ if (canvas) {
       }
     });
   }
-
-  initCandles();
 
   function roundRect(c, x, y, w, h, r, fill, stroke, lw) {
     c.save();
@@ -692,30 +680,6 @@ if (canvas) {
 
         ctx.restore();
       }
-
-      if (c.blown) {
-        const t = Date.now() / 700;
-
-        ctx.save();
-        ctx.strokeStyle = 'rgba(15,10,0,0.25)';
-        ctx.lineWidth = 1.5;
-
-        for (let i = 0; i < 2; i++) {
-          ctx.beginPath();
-          ctx.moveTo(cx, cy - 6);
-          ctx.bezierCurveTo(
-            cx - 8 + Math.sin(t + i) * 4,
-            cy - 22,
-            cx + 8 + Math.cos(t + i) * 4,
-            cy - 35,
-            cx + Math.sin(t + i) * 10,
-            cy - 48
-          );
-          ctx.stroke();
-        }
-
-        ctx.restore();
-      }
     });
 
     if (wishMade) {
@@ -736,13 +700,6 @@ if (canvas) {
     requestAnimationFrame(animateCake);
   }
 
-  animateCake();
-
-  const btnLight = getEl('btn-light');
-  const btnBlow = getEl('btn-blow');
-  const cakeMsg = getEl('cake-msg');
-  const micHint = document.querySelector('.mic-hint');
-
   function lightCandles() {
     candlesLit = true;
     candlesLeft = TOTAL;
@@ -752,6 +709,11 @@ if (canvas) {
       c.lit = true;
       c.blown = false;
     });
+
+    const btnLight = getEl('btn-light');
+    const btnBlow = getEl('btn-blow');
+    const cakeMsg = getEl('cake-msg');
+    const micHint = document.querySelector('.mic-hint');
 
     if (btnLight) btnLight.style.display = 'none';
     if (btnBlow) btnBlow.style.display = 'inline-block';
@@ -772,6 +734,11 @@ if (canvas) {
           wishMade = true;
           candlesLit = false;
 
+          const btnLight = getEl('btn-light');
+          const btnBlow = getEl('btn-blow');
+          const cakeMsg = getEl('cake-msg');
+          const micHint = document.querySelector('.mic-hint');
+
           if (cakeMsg) cakeMsg.textContent = 'Wish made. Happy 30th Divya ✨';
           if (btnBlow) btnBlow.style.display = 'none';
           if (btnLight) btnLight.style.display = 'inline-block';
@@ -783,13 +750,14 @@ if (canvas) {
     });
   }
 
-  if (btnLight) {
-    btnLight.addEventListener('click', lightCandles);
-  }
+  initCandles();
+  animateCake();
 
-  if (btnBlow) {
-    btnBlow.addEventListener('click', blowCandles);
-  }
+  const btnLight = getEl('btn-light');
+  const btnBlow = getEl('btn-blow');
+
+  if (btnLight) btnLight.addEventListener('click', lightCandles);
+  if (btnBlow) btnBlow.addEventListener('click', blowCandles);
 
   canvas.addEventListener('click', () => {
     if (!candlesLit) {
@@ -799,3 +767,42 @@ if (canvas) {
     }
   });
 }
+
+/* ─── LOAD BURST ─────────────────────────────────── */
+
+function setupLoadBurst() {
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      for (let i = 0; i < 4; i++) {
+        setTimeout(() => {
+          confetti(
+            Math.random() * window.innerWidth,
+            window.innerHeight * 0.3 + Math.random() * 200,
+            30
+          );
+        }, i * 350);
+      }
+    }, 700);
+  });
+}
+
+/* ─── BOOT ───────────────────────────────────────── */
+
+document.addEventListener('DOMContentLoaded', () => {
+  buildMQ('mq1');
+  buildMQ('mq2');
+
+  buildReasons();
+  buildVideos();
+  buildGallery();
+  buildMessages();
+
+  setupCursor();
+  setupBigNumber();
+  setupGlobalRipple();
+  setupCake();
+  setupObserver();
+  setupLoadBurst();
+
+  console.log('Divya birthday site loaded successfully.');
+});
