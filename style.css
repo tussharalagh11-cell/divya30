@@ -292,59 +292,56 @@ body {
   .masonry { columns: 1; }
 }
 
-/* ── FIX PHOTO CROPPING IN GALLERY ── */
-/* Your real image card class is .ptile, not .photo-card */
+/* ── FIX BAKED-IN SQUARE / SCREENSHOT ARTIFACTS ── */
 
-.ptile {
-  position: relative;
+/* Base */
+.ptile,
+.vid-card {
   overflow: hidden;
-  background: var(--cream);
+  position: relative;
 }
 
-/* This is the actual fix: stop cropping the image */
-.ptile img {
-  width: 100%;
-  height: auto !important;
-  max-height: none !important;
+/* Keep media filling nicely */
+.ptile img,
+.vid-thumb {
   display: block;
-  object-fit: contain !important;
-  object-position: center top !important;
-}
-
-/* If any global img rule is forcing cover, this overrides it */
-.masonry .ptile img,
-#gallery .ptile img {
   width: 100%;
-  height: auto !important;
-  object-fit: contain !important;
+}
+
+/* 1) Remove the square inset box on the RIGHT side */
+.ptile.crop-right-box img,
+.vid-card.crop-right-box .vid-thumb {
+  height: 420px !important;
+  width: 118% !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  object-position: left center !important;
+  transform: translateX(-6%) !important;
+}
+
+/* 2) Remove the junk/status bar at the TOP */
+.ptile.crop-top-bar img,
+.vid-card.crop-top-bar .vid-thumb {
+  height: 420px !important;
+  width: 104% !important;
+  max-width: none !important;
+  object-fit: cover !important;
   object-position: center top !important;
+  transform: translateY(-26px) scale(1.02) !important;
 }
 
-/* Keep captions on top of photo but don't force image crop */
-.ptile .cap,
-.ptile .caption,
-.ptile .photo-copy,
-.ptile .overlay {
-  position: absolute;
-  left: 20px;
-  bottom: 16px;
-  z-index: 3;
-}
+/* Mobile tuning */
+@media (max-width: 768px) {
+  .ptile.crop-right-box img,
+  .vid-card.crop-right-box .vid-thumb {
+    height: 360px !important;
+    width: 122% !important;
+    transform: translateX(-8%) !important;
+  }
 
-/* Optional: soft readable gradient behind captions */
-.ptile::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 35%;
-  background: linear-gradient(to top, rgba(15,10,0,0.55), transparent);
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* Text cards should not get the photo overlay */
-.ptile:has(.ti)::after {
-  display: none;
+  .ptile.crop-top-bar img,
+  .vid-card.crop-top-bar .vid-thumb {
+    height: 360px !important;
+    transform: translateY(-20px) scale(1.03) !important;
+  }
 }
