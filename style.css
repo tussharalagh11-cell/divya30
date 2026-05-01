@@ -292,32 +292,59 @@ body {
   .masonry { columns: 1; }
 }
 
-/* Kill floating decorative/cursor circles on top of photos */
-.photo-card .floating-dot,
-.photo-card .cursor-ring,
-.photo-card .circle,
-.photo-card .decorative-circle,
-.photo-card .blob,
-.photo-card .orb {
-  display: none !important;
-}
+/* ── FIX PHOTO CROPPING IN GALLERY ── */
+/* Your real image card class is .ptile, not .photo-card */
 
-/* Make sure images sit above background decorations */
-.photo-card {
+.ptile {
   position: relative;
   overflow: hidden;
+  background: var(--cream);
 }
 
-.photo-card img {
-  position: relative;
-  z-index: 2;
+/* This is the actual fix: stop cropping the image */
+.ptile img {
+  width: 100%;
+  height: auto !important;
+  max-height: none !important;
   display: block;
+  object-fit: contain !important;
+  object-position: center top !important;
 }
 
-/* Keep text overlays above image if needed */
-.photo-card .photo-copy,
-.photo-card .caption,
-.photo-card .overlay {
-  position: relative;
+/* If any global img rule is forcing cover, this overrides it */
+.masonry .ptile img,
+#gallery .ptile img {
+  width: 100%;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center top !important;
+}
+
+/* Keep captions on top of photo but don't force image crop */
+.ptile .cap,
+.ptile .caption,
+.ptile .photo-copy,
+.ptile .overlay {
+  position: absolute;
+  left: 20px;
+  bottom: 16px;
   z-index: 3;
+}
+
+/* Optional: soft readable gradient behind captions */
+.ptile::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 35%;
+  background: linear-gradient(to top, rgba(15,10,0,0.55), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Text cards should not get the photo overlay */
+.ptile:has(.ti)::after {
+  display: none;
 }
