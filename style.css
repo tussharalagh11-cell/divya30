@@ -317,7 +317,8 @@ body {
   }
 }
 
-/* ── FINAL GALLERY IMAGE FIX: show faces, reduce harsh crop ── */
+/* ── MORE IMAGE SHOWING IN GALLERY ── */
+/* Global fix: make photo tiles taller so more of the image is visible */
 
 #gallery .masonry {
   columns: 2;
@@ -327,36 +328,37 @@ body {
 #gallery .ptile {
   position: relative;
   overflow: hidden;
-  border-radius: 16px;
   background: var(--cream);
+  break-inside: avoid;
 }
 
-/* Main fix */
+/* Default photo tiles: show more vertical area */
 #gallery .ptile img {
   width: 100% !important;
-  height: 520px !important;
-  max-height: none !important;
+  height: 620px !important;              /* was too short before */
   display: block !important;
   object-fit: cover !important;
-  object-position: center 18% !important;
+  object-position: center 8% !important; /* keep more top/face visible */
   transform: none !important;
+  max-height: none !important;
+  max-width: none !important;
 }
 
-/* Landscape-ish images can be shorter */
-#gallery .ptile.wide img {
-  height: 380px !important;
-  object-position: center 20% !important;
-}
-
-/* Portrait / face-heavy images should be taller */
+/* If a tile is extra portrait/selfie-heavy, give it even more room */
 #gallery .ptile.portrait img,
-#gallery .ptile.show-face img,
-#gallery .ptile.guess-era-fix img {
-  height: 580px !important;
-  object-position: center 8% !important;
+#gallery .ptile.selfie img,
+#gallery .ptile.extra-tall img {
+  height: 720px !important;
+  object-position: center 5% !important;
 }
 
-/* Keep captions readable */
+/* If a tile is more landscape/wide, slightly shorter is fine */
+#gallery .ptile.wide img {
+  height: 500px !important;
+  object-position: center 12% !important;
+}
+
+/* Caption readability */
 #gallery .ptile::after {
   content: "";
   position: absolute;
@@ -379,26 +381,30 @@ body {
   z-index: 3;
 }
 
-/* Text/color tiles should not get photo gradient */
+/* Don't add photo gradient to text/color tiles */
 #gallery .ptile:has(.ti)::after {
   display: none;
 }
 
-/* Responsive */
+/* Tablet */
 @media (max-width: 768px) {
   #gallery .masonry {
     columns: 1;
   }
 
   #gallery .ptile img {
-    height: 440px !important;
-    object-position: center 12% !important;
+    height: 520px !important;
+    object-position: center 6% !important;
   }
 
   #gallery .ptile.portrait img,
-  #gallery .ptile.show-face img,
-  #gallery .ptile.guess-era-fix img {
-    height: 520px !important;
-    object-position: center 6% !important;
+  #gallery .ptile.selfie img,
+  #gallery .ptile.extra-tall img {
+    height: 620px !important;
+    object-position: center 4% !important;
+  }
+
+  #gallery .ptile.wide img {
+    height: 440px !important;
   }
 }
