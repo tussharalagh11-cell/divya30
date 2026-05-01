@@ -168,7 +168,7 @@ body {
 .cake-pre { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(255,251,232,0.5); margin-bottom: 1rem; }
 .cake-title { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: clamp(48px,8vw,96px); line-height: 0.9; color: var(--yellow); text-shadow: 5px 5px 0 var(--dark); letter-spacing: -0.03em; margin-bottom: 0.5rem; }
 .cake-sub { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; color: var(--cream); opacity: 0.8; margin-bottom: 3rem; }
-#cake-canvas { display: block; margin: 0 auto; max-width: 100%; border-radius: 16px; cursor: pointer; }
+#cake-canvas { display: block; margin: 0 auto; width: 100%; max-width: 520px; height: auto; border-radius: 16px; cursor: pointer; background: transparent; }
 .cake-btns { margin-top: 2rem; }
 .cake-btn {
   font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 13px;
