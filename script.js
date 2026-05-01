@@ -1,7 +1,9 @@
 /* ═══════════════════════════════════════════════════
    DIVYA IS 30 — script.js
-   Fixed version
+   Full fixed version
    ═══════════════════════════════════════════════════ */
+
+/* ─── VIDEOS ─────────────────────────────────────── */
 
 const videos = [
   {
@@ -33,6 +35,8 @@ const videos = [
     bg: '#00C9B1',
   },
 ];
+
+/* ─── DATA ───────────────────────────────────────── */
 
 const reasons = [
   ['🌊', 'She never half-does anything'],
@@ -149,13 +153,14 @@ const mqW = [
 
 const mqC = ['o', 'y', 'p', 't', 'l'];
 
-function $(id) {
+function getEl(id) {
   return document.getElementById(id);
 }
 
 /* ─── MARQUEE ────────────────────────────────────── */
+
 function buildMQ(id) {
-  const el = $(id);
+  const el = getEl(id);
   if (!el) return;
 
   [...mqW, ...mqW, ...mqW, ...mqW].forEach((t, i) => {
@@ -170,7 +175,8 @@ buildMQ('mq1');
 buildMQ('mq2');
 
 /* ─── REASONS ────────────────────────────────────── */
-const rg = $('rgrid');
+
+const rg = getEl('rgrid');
 
 if (rg) {
   reasons.forEach(([em, txt], i) => {
@@ -178,7 +184,11 @@ if (rg) {
     c.className = 'rc';
     c.setAttribute('data-n', i + 1);
     c.style.transitionDelay = i * 0.04 + 's';
-    c.innerHTML = `<span class="re">${em}</span><div class="rtx">${txt}</div>`;
+
+    c.innerHTML = `
+      <span class="re">${em}</span>
+      <div class="rtx">${txt}</div>
+    `;
 
     c.addEventListener('mouseenter', () => {
       c.style.borderColor = accs[i % accs.length];
@@ -193,7 +203,8 @@ if (rg) {
 }
 
 /* ─── VIDEOS ─────────────────────────────────────── */
-const vg = $('vid-grid');
+
+const vg = getEl('vid-grid');
 
 if (vg) {
   videos.forEach((v, i) => {
@@ -222,22 +233,23 @@ if (vg) {
 }
 
 /* ─── GALLERY ────────────────────────────────────── */
-const ms = $('masonry');
+
+const ms = getEl('masonry');
 
 if (ms) {
   tiles.forEach((t, i) => {
     const tile = document.createElement('div');
     tile.className = 'ptile';
     tile.style.transitionDelay = i * 0.07 + 's';
+    tile.style.background = t.bg;
 
     const tc = t.col || '#0F0A00';
+
     const hasPhoto =
       t.photo &&
       typeof PHOTOS !== 'undefined' &&
       PHOTOS &&
       PHOTOS[t.photo];
-
-    tile.style.background = t.bg;
 
     if (hasPhoto) {
       const imgSrc = PHOTOS[t.photo];
@@ -248,7 +260,14 @@ if (ms) {
             src="${imgSrc}"
             alt="${t.label}"
             style="width:100%;display:block;object-fit:cover;max-height:340px;"
-            onerror="this.closest('.ptile').innerHTML = '<div class=&quot;ti&quot;><div class=&quot;te&quot;>📸</div><div class=&quot;tl&quot; style=&quot;color:${tc}&quot;>${t.label}</div><div class=&quot;ts&quot; style=&quot;color:${tc}&quot;>Missing image: ${imgSrc}</div></div>';"
+            onerror="
+              this.closest('.ptile').innerHTML =
+              '<div class=&quot;ti&quot;>' +
+              '<div class=&quot;te&quot;>📸</div>' +
+              '<div class=&quot;tl&quot; style=&quot;color:${tc}&quot;>${t.label}</div>' +
+              '<div class=&quot;ts&quot; style=&quot;color:${tc}&quot;>Missing image: ${imgSrc}</div>' +
+              '</div>';
+            "
           >
           <div style="position:absolute;bottom:0;left:0;right:0;padding:1rem 1.2rem;background:linear-gradient(to top,rgba(0,0,0,0.75),transparent);">
             <div style="font-family:'Fraunces',serif;font-style:italic;font-size:18px;color:#fff;font-weight:300;">${t.label}</div>
@@ -278,8 +297,9 @@ if (ms) {
 }
 
 /* ─── MESSAGES ───────────────────────────────────── */
+
 const mbg = ['#FFD600', '#00C9B1', '#AAEE44', '#3B6EF8', '#FFD600', '#FF3CAC'];
-const mg = $('mgrid');
+const mg = getEl('mgrid');
 
 if (mg) {
   msgs.forEach((m, i) => {
@@ -293,14 +313,18 @@ if (mg) {
       <div class="mfr">— With love</div>
     `;
 
-    c.addEventListener('click', (e) => confetti(e.clientX, e.clientY, 12));
+    c.addEventListener('click', (e) => {
+      confetti(e.clientX, e.clientY, 12);
+    });
+
     mg.appendChild(c);
   });
 }
 
 /* ─── CURSOR ─────────────────────────────────────── */
-const cur = $('cur');
-const cur2 = $('cur2');
+
+const cur = getEl('cur');
+const cur2 = getEl('cur2');
 
 let mx = 0;
 let my = 0;
@@ -319,6 +343,7 @@ if (cur && cur2) {
     cur.style.left = mx + 'px';
     cur.style.top = my + 'px';
     cur.style.opacity = '1';
+
     cur2.style.opacity = '0.7';
   });
 
@@ -349,6 +374,7 @@ if (cur && cur2) {
 }
 
 /* ─── CONFETTI ───────────────────────────────────── */
+
 function confetti(x, y, n = 40) {
   for (let i = 0; i < n; i++) {
     const el = document.createElement('div');
@@ -369,11 +395,16 @@ function confetti(x, y, n = 40) {
     `;
 
     document.body.appendChild(el);
-    setTimeout(() => el.remove(), 3500);
+
+    setTimeout(() => {
+      el.remove();
+    }, 3500);
   }
 }
 
-const bignum = $('bignum');
+/* ─── BIG 30 CONFETTI ────────────────────────────── */
+
+const bignum = getEl('bignum');
 
 if (bignum) {
   bignum.addEventListener('click', (e) => {
@@ -391,6 +422,8 @@ if (bignum) {
   });
 }
 
+/* ─── GLOBAL RIPPLE ──────────────────────────────── */
+
 document.addEventListener('click', (e) => {
   const r = document.createElement('div');
   r.className = 'rip';
@@ -404,71 +437,87 @@ document.addEventListener('click', (e) => {
   `;
 
   document.body.appendChild(r);
-  setTimeout(() => r.remove(), 900);
+
+  setTimeout(() => {
+    r.remove();
+  }, 900);
 });
 
 /* ─── LIGHTBOX ───────────────────────────────────── */
+
 function openLB(em, ti, tx) {
-  const lbe = $('lbe');
-  const lbt = $('lbt');
-  const lbtx = $('lbtx');
-  const lbox = $('lbox');
+  const lbe = getEl('lbe');
+  const lbt = getEl('lbt');
+  const lbtx = getEl('lbtx');
+  const lbox = getEl('lbox');
 
   if (!lbe || !lbt || !lbtx || !lbox) return;
 
   lbe.textContent = em || '📸';
   lbt.textContent = ti || '';
   lbtx.textContent = tx || '';
+
   lbox.style.display = 'flex';
 }
 
 function closeLB() {
-  const lbox = $('lbox');
-  if (lbox) lbox.style.display = 'none';
+  const lbox = getEl('lbox');
+  if (!lbox) return;
+
+  lbox.style.display = 'none';
 }
 
 window.closeLB = closeLB;
 
 /* ─── VIDEO MODAL ────────────────────────────────── */
+
 function openVid(src) {
-  const player = $('vmodal-player');
-  const modal = $('vmodal');
+  const player = getEl('vmodal-player');
+  const modal = getEl('vmodal');
 
   if (!player || !modal) return;
 
   player.src = src;
   player.play().catch(() => {});
+
   modal.classList.add('open');
 }
 
 function closeVid() {
-  const player = $('vmodal-player');
-  const modal = $('vmodal');
+  const player = getEl('vmodal-player');
+  const modal = getEl('vmodal');
 
   if (!player || !modal) return;
 
   player.pause();
   player.src = '';
+
   modal.classList.remove('open');
 }
 
 window.closeVid = closeVid;
 
 /* ─── INTERSECTION OBSERVER ───────────────────────── */
+
 const obs = new IntersectionObserver(
   (entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) e.target.classList.add('vis');
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('vis');
+      }
     });
   },
   { threshold: 0.08 }
 );
 
 document
-  .querySelectorAll('.rc,.ptile,.mc,.fu,.vid-card,.letter-body p')
-  .forEach((el) => obs.observe(el));
+  .querySelectorAll('.rc, .ptile, .mc, .fu, .vid-card, .letter-body p')
+  .forEach((el) => {
+    obs.observe(el);
+  });
 
 /* ─── LOAD BURST ─────────────────────────────────── */
+
 window.addEventListener('load', () => {
   setTimeout(() => {
     for (let i = 0; i < 4; i++) {
@@ -485,20 +534,20 @@ window.addEventListener('load', () => {
 
 /* ═══════════════════════════════════════════════════
    BIRTHDAY CAKE — Canvas
-   Safe version
    ═══════════════════════════════════════════════════ */
 
-const canvas = $('cake-canvas');
+const canvas = getEl('cake-canvas');
 
 if (canvas) {
   const ctx = canvas.getContext('2d');
+
   const W = 520;
   const H = 400;
+  const TOTAL = 30;
 
   canvas.width = W;
   canvas.height = H;
 
-  const TOTAL = 30;
   const candleData = [];
 
   let candlesLit = false;
@@ -532,7 +581,20 @@ if (canvas) {
   function roundRect(c, x, y, w, h, r, fill, stroke, lw) {
     c.save();
     c.beginPath();
-    c.roundRect(x, y, w, h, r);
+
+    if (typeof c.roundRect === 'function') {
+      c.roundRect(x, y, w, h, r);
+    } else {
+      c.moveTo(x + r, y);
+      c.lineTo(x + w - r, y);
+      c.quadraticCurveTo(x + w, y, x + w, y + r);
+      c.lineTo(x + w, y + h - r);
+      c.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      c.lineTo(x + r, y + h);
+      c.quadraticCurveTo(x, y + h, x, y + h - r);
+      c.lineTo(x, y + r);
+      c.quadraticCurveTo(x, y, x + r, y);
+    }
 
     if (fill) {
       c.fillStyle = fill;
@@ -610,21 +672,14 @@ if (canvas) {
       const cx = c.x;
       const cy = c.baseY - 30;
 
-      ctx.save();
-      ctx.beginPath();
-      ctx.roundRect(cx - 4, cy, 8, 30, 3);
-      ctx.fillStyle = c.blown ? '#999' : '#FFFBE8';
-      ctx.strokeStyle = '#0F0A00';
-      ctx.lineWidth = 1.5;
-      ctx.fill();
-      ctx.stroke();
-      ctx.restore();
+      roundRect(ctx, cx - 4, cy, 8, 30, 3, c.blown ? '#999' : '#FFFBE8', '#0F0A00', 1.5);
 
       if (c.lit && !c.blown) {
         const t = Date.now() / 120;
         const flameSize = 8 + Math.sin(t + c.flicker) * 2;
 
         ctx.save();
+
         ctx.beginPath();
         ctx.ellipse(cx, cy - 8, flameSize * 0.7, flameSize, 0, 0, Math.PI * 2);
         ctx.fillStyle = '#FFD600';
@@ -634,6 +689,7 @@ if (canvas) {
         ctx.ellipse(cx, cy - 6, flameSize * 0.35, flameSize * 0.55, 0, 0, Math.PI * 2);
         ctx.fillStyle = '#FF5C1A';
         ctx.fill();
+
         ctx.restore();
       }
 
@@ -682,9 +738,9 @@ if (canvas) {
 
   animateCake();
 
-  const btnLight = $('btn-light');
-  const btnBlow = $('btn-blow');
-  const cakeMsg = $('cake-msg');
+  const btnLight = getEl('btn-light');
+  const btnBlow = getEl('btn-blow');
+  const cakeMsg = getEl('cake-msg');
   const micHint = document.querySelector('.mic-hint');
 
   function lightCandles() {
@@ -714,6 +770,7 @@ if (canvas) {
 
         if (candlesLeft <= 0) {
           wishMade = true;
+          candlesLit = false;
 
           if (cakeMsg) cakeMsg.textContent = 'Wish made. Happy 30th Divya ✨';
           if (btnBlow) btnBlow.style.display = 'none';
@@ -726,11 +783,19 @@ if (canvas) {
     });
   }
 
-  if (btnLight) btnLight.addEventListener('click', lightCandles);
-  if (btnBlow) btnBlow.addEventListener('click', blowCandles);
+  if (btnLight) {
+    btnLight.addEventListener('click', lightCandles);
+  }
+
+  if (btnBlow) {
+    btnBlow.addEventListener('click', blowCandles);
+  }
 
   canvas.addEventListener('click', () => {
-    if (!candlesLit) lightCandles();
-    else blowCandles();
+    if (!candlesLit) {
+      lightCandles();
+    } else {
+      blowCandles();
+    }
   });
 }
