@@ -317,7 +317,8 @@ body {
   }
 }
 
-/* ── COMPACT FULL PHOTO MODE: no crop, smaller cards ── */
+/* ── BETTER GALLERY PHOTO LAYOUT ── */
+/* Full photos, no ugly black bars, no giant cards */
 
 #gallery .masonry {
   columns: 2;
@@ -327,46 +328,43 @@ body {
 #gallery .ptile {
   position: relative;
   overflow: hidden;
-  background: var(--dark);
   break-inside: avoid;
   border: 3px solid var(--dark);
   border-radius: 16px;
+  background: var(--cream);
+  margin-bottom: 1rem;
 }
 
-/* Full photo, but not massive */
+/* Main fix */
 #gallery .ptile img {
-  width: 100% !important;
-  height: 440px !important;
-  max-height: 440px !important;
   display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: 520px !important;   /* keeps cards from getting huge */
   object-fit: contain !important;
-  object-position: center center !important;
-  transform: none !important;
-  background: var(--dark);
+  object-position: center top !important;
+  background: var(--cream) !important;
+  margin: 0 auto;
 }
 
-/* Optional: make wide/landscape photos shorter */
+/* Optional tuning */
+#gallery .ptile.portrait img {
+  max-height: 560px !important;
+}
+
 #gallery .ptile.wide img {
-  height: 360px !important;
-  max-height: 360px !important;
+  max-height: 420px !important;
 }
 
-/* Optional: only portrait photos get a bit more room */
-#gallery .ptile.portrait img,
-#gallery .ptile.extra-tall img {
-  height: 500px !important;
-  max-height: 500px !important;
-}
-
-/* Caption readability */
+/* Caption overlay */
 #gallery .ptile::after {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 32%;
-  background: linear-gradient(to top, rgba(15,10,0,0.68), transparent);
+  height: 28%;
+  background: linear-gradient(to top, rgba(15,10,0,0.60), transparent);
   pointer-events: none;
   z-index: 2;
 }
@@ -381,7 +379,7 @@ body {
   z-index: 3;
 }
 
-/* Text/color tiles should not get photo gradient */
+/* Don’t apply photo gradient on text tiles */
 #gallery .ptile:has(.ti)::after {
   display: none;
 }
@@ -393,18 +391,14 @@ body {
   }
 
   #gallery .ptile img {
-    height: 390px !important;
-    max-height: 390px !important;
-  }
-
-  #gallery .ptile.portrait img,
-  #gallery .ptile.extra-tall img {
-    height: 460px !important;
     max-height: 460px !important;
   }
 
+  #gallery .ptile.portrait img {
+    max-height: 500px !important;
+  }
+
   #gallery .ptile.wide img {
-    height: 320px !important;
-    max-height: 320px !important;
+    max-height: 360px !important;
   }
 }
