@@ -77,67 +77,36 @@ const reasons = [
 ];
 
 const tiles = [
-  { photo:'public/photos/p15.jpg', label:'Baby Divya',        sub:'Where it all began 🌸',      bg:'#FF3CAC' },
-  { photo:'public/photos/p01.jpg', label:'The GUESS era',      sub:'Pink was always right',      bg:'#FFD600' },
-  { photo:'public/photos/p06.jpg', label:'The lehenga',        sub:'She wore it like a queen',   bg:'#AAEE44' },
-  { photo:'public/photos/p04.jpg', label:'Dressed up',         sub:'Effortlessly stunning',      bg:'#FF5C1A' },
-  { photo:'public/photos/p05.jpg', label:'Holi',               sub:'Colour on colour on colour', bg:'#00C9B1' },
-  { photo:'public/photos/p16.jpg', label:'That orange lehenga',sub:'She showed up',              bg:'#FF3CAC' },
-  { photo:'public/photos/p02.jpg', label:'Navratri',           sub:'Day 2 — White ♡',           bg:'#3B6EF8' },
-  { photo:'public/photos/p03.jpg', label:'Saturday 2:37 PM',   sub:'A perfect ordinary day',    bg:'#FFD600' },
-  { photo:'public/photos/p17.jpg', label:'Somewhere in Europe',sub:'Pizza & adventure',          bg:'#FF5C1A' },
-  { photo:'public/photos/p20.jpg', label:'The best smile',     sub:'That laugh though',          bg:'#AAEE44' },
-  { photo:'public/photos/p07.jpg', label:'FaceTime',           sub:'Cheek on hand, always',      bg:'#FF3CAC' },
-  { photo:'public/photos/p08.jpg', label:'Laughing',           sub:'The real ones',              bg:'#FFD600' },
-  { photo:'public/photos/p09.jpg', label:'That smile',         sub:'Gets me every time',         bg:'#00C9B1' },
-  { photo:'public/photos/p10.jpg', label:'Laughing hard',      sub:'Uncontrollable',             bg:'#3B6EF8' },
-  { photo:'public/photos/p11.jpg', label:'Soft moment',        sub:'The quiet kind',             bg:'#FF5C1A' },
-  { photo:'public/photos/p12.jpg', label:'Big laugh',          sub:'Could hear it through the screen', bg:'#AAEE44' },
-  { photo:'public/photos/p13.jpg', label:'Green sweater',      sub:'Ottawa winter look',         bg:'#FF3CAC' },
-  { photo:'public/photos/p14.jpg', label:'Late night',         sub:'Pearl bracelet, always',     bg:'#FFD600' },
-  { photo:'public/photos/p18.jpg', label:'Gas station',        sub:'Sunglasses on head, always', bg:'#00C9B1' },
-  { photo:'public/photos/p19.jpg', label:'Dinner out',         sub:'That laugh mid-bite',        bg:'#FF5C1A' },
-  // emoji tiles to fill the rest
-  { emoji:'🎂', label:'Birthday energy',     sub:'All year round',         bg:'#FF3CAC', col:'#FFFBE8' },
-  { emoji:'🌈', label:'The chaotic days',    sub:'Still worth it',         bg:'#3B6EF8', col:'#FFFBE8' },
-  { emoji:'🦋', label:'The glow-up',         sub:'Every single year',      bg:'#FFD600' },
-  { emoji:'🌊', label:'Summer days',         sub:'Water & sunshine',       bg:'#00C9B1' },
-  { emoji:'🎯', label:'The focused era',     sub:'She knew what she wanted',bg:'#AAEE44' },
-  { emoji:'🕯️', label:'Quiet nights',        sub:'Soft and good',          bg:'#FF5C1A', col:'#FFFBE8' },
-  { emoji:'💌', label:'The love era',        sub:'She gave it fully',      bg:'#3B6EF8', col:'#FFFBE8' },
-  { emoji:'🎠', label:'The fun ones',        sub:'Laughing all night',     bg:'#AAEE44' },
-  { emoji:'🫶', label:'Her people',          sub:'Lucky to know her',      bg:'#FF3CAC', col:'#FFFBE8' },
-  { emoji:'✨', label:'Today',               sub:'Happy 30th Divya',       bg:'#FFD600' },
-];
-  { emoji:'🎉', label:'Every celebration',  sub:'She showed up',          bg:'#FF3CAC', col:'#FFFBE8' },
-  { emoji:'🌿', label:'Outdoor days',       sub:'In full bloom',          bg:'#AAEE44' },
-  { emoji:'☕', label:'Coffee runs',         sub:'Always iced',            bg:'#FF5C1A', col:'#FFFBE8' },
-  { emoji:'🌙', label:'Late nights',         sub:'Worth every hour',       bg:'#3B6EF8', col:'#FFFBE8' },
-  { emoji:'🎶', label:'Playlist era',        sub:'She curated it',         bg:'#00C9B1' },
-  { emoji:'🌸', label:'Spring days',         sub:'Best season',            bg:'#FF3CAC', col:'#FFFBE8' },
-  { emoji:'🏔️', label:'Road trips',          sub:'Everywhere she went',    bg:'#AAEE44' },
-  { emoji:'🥂', label:'The big moments',     sub:'All of them',            bg:'#FFD600' },
-  { emoji:'🎂', label:'Birthday energy',     sub:'All year round',         bg:'#FF5C1A', col:'#FFFBE8' },
-  { emoji:'🌈', label:'The chaotic days',    sub:'Still worth it',         bg:'#3B6EF8', col:'#FFFBE8' },
-  { emoji:'📸', label:'Every photo',         sub:'She looks great',        bg:'#FFD600' },
-  { emoji:'🦋', label:'The glow-up',         sub:'Every single year',      bg:'#FF3CAC', col:'#FFFBE8' },
-  { emoji:'🌊', label:'Summer days',         sub:'Water & sunshine',       bg:'#00C9B1' },
-  { emoji:'🎯', label:'The focused era',     sub:'She knew what she wanted',bg:'#AAEE44' },
-  { emoji:'🕯️', label:'Quiet nights',        sub:'Soft and good',          bg:'#FF5C1A', col:'#FFFBE8' },
-  { emoji:'🌻', label:'Golden moments',      sub:'Warm & bright',          bg:'#FFD600' },
-  { emoji:'🎪', label:'Every adventure',     sub:'Big or small',           bg:'#FF3CAC', col:'#FFFBE8' },
-  { emoji:'💌', label:'The love era',        sub:'She gave it fully',      bg:'#3B6EF8', col:'#FFFBE8' },
-  { emoji:'🍂', label:'Autumn walks',        sub:'Her favourite season',   bg:'#FF5C1A', col:'#FFFBE8' },
-  { emoji:'🎠', label:'The fun ones',        sub:'Laughing all night',     bg:'#AAEE44' },
-  { emoji:'🌙', label:'Midnight talks',      sub:'The real ones',          bg:'#3B6EF8', col:'#FFFBE8' },
-  { emoji:'🦚', label:'Style era',           sub:'Always herself',         bg:'#00C9B1' },
-  { emoji:'🍊', label:'The orange days',     sub:'Bright & chaotic',       bg:'#FF5C1A', col:'#FFFBE8' },
-  { emoji:'🌺', label:'Slow Sundays',        sub:'The sacred ones',        bg:'#FF3CAC', col:'#FFFBE8' },
-  { emoji:'⚡', label:'The electric nights', sub:'Unforgettable',          bg:'#FFD600' },
-  { emoji:'🎵', label:'That one song',       sub:'She knows the one',      bg:'#AAEE44' },
-  { emoji:'🫶', label:'Her people',          sub:'Lucky to know her',      bg:'#FF3CAC', col:'#FFFBE8' },
-  { emoji:'✨', label:'The magic moments',   sub:'Too many to count',      bg:'#3B6EF8', col:'#FFFBE8' },
-  { emoji:'🎂', label:'Today',               sub:'Happy 30th Divya',       bg:'#FF5C1A', col:'#FFFBE8' },
+  { photo:'p15', label:'Baby Divya',         sub:'Where it all began 🌸',       bg:'#FF3CAC' },
+  { photo:'p01', label:'The GUESS era',       sub:'Pink was always right',       bg:'#FFD600' },
+  { photo:'p06', label:'The lehenga',         sub:'She wore it like a queen',    bg:'#AAEE44' },
+  { photo:'p04', label:'Dressed up',          sub:'Effortlessly stunning',       bg:'#FF5C1A' },
+  { photo:'p05', label:'Holi',                sub:'Colour on colour on colour',  bg:'#00C9B1' },
+  { photo:'p16', label:'That orange lehenga', sub:'She showed up',               bg:'#FF3CAC' },
+  { photo:'p02', label:'Navratri',            sub:'Day 2 — White ♡',            bg:'#3B6EF8' },
+  { photo:'p03', label:'Saturday 2:37 PM',    sub:'A perfect ordinary day',      bg:'#FFD600' },
+  { photo:'p17', label:'Somewhere in Europe', sub:'Pizza & adventure',           bg:'#FF5C1A' },
+  { photo:'p20', label:'The best smile',      sub:'That laugh though',           bg:'#AAEE44' },
+  { photo:'p07', label:'FaceTime',            sub:'Cheek on hand, always',       bg:'#FF3CAC' },
+  { photo:'p08', label:'Laughing',            sub:'The real ones',               bg:'#FFD600' },
+  { photo:'p09', label:'That smile',          sub:'Gets me every time',          bg:'#00C9B1' },
+  { photo:'p18', label:'Gas station',         sub:'Sunglasses on head, always',  bg:'#3B6EF8' },
+  { photo:'p19', label:'Dinner out',          sub:'That laugh mid-bite',         bg:'#FF5C1A' },
+  { emoji:'🎂',  label:'Birthday energy',     sub:'All year round',              bg:'#FF3CAC', col:'#FFFBE8' },
+  { emoji:'🌈',  label:'The chaotic days',    sub:'Still worth it',              bg:'#3B6EF8', col:'#FFFBE8' },
+  { emoji:'🦋',  label:'The glow-up',         sub:'Every single year',           bg:'#FFD600' },
+  { emoji:'🌊',  label:'Summer days',         sub:'Water & sunshine',            bg:'#00C9B1' },
+  { emoji:'🎯',  label:'The focused era',     sub:'She knew what she wanted',    bg:'#AAEE44' },
+  { emoji:'🕯️',  label:'Quiet nights',        sub:'Soft and good',               bg:'#FF5C1A', col:'#FFFBE8' },
+  { emoji:'💌',  label:'The love era',        sub:'She gave it fully',           bg:'#3B6EF8', col:'#FFFBE8' },
+  { emoji:'🎠',  label:'The fun ones',        sub:'Laughing all night',          bg:'#AAEE44' },
+  { emoji:'🫶',  label:'Her people',          sub:'Lucky to know her',           bg:'#FF3CAC', col:'#FFFBE8' },
+  { emoji:'🌸',  label:'Navratri nights',     sub:'Dressed and ready',           bg:'#FF5C1A', col:'#FFFBE8' },
+  { emoji:'☕',  label:'Coffee runs',          sub:'Always iced',                 bg:'#FFD600' },
+  { emoji:'🎶',  label:'Playlist era',        sub:'She curated it',              bg:'#00C9B1' },
+  { emoji:'🥂',  label:'Every celebration',   sub:'She showed up',               bg:'#FF3CAC', col:'#FFFBE8' },
+  { emoji:'⚡',  label:'The electric nights', sub:'Unforgettable',               bg:'#3B6EF8', col:'#FFFBE8' },
+  { emoji:'✨',  label:'Today',               sub:'Happy 30th Divya',            bg:'#FFD600' },
 ];
 
 const msgs = [
@@ -231,19 +200,19 @@ tiles.forEach((t, i) => {
   tile.className = 'ptile';
   tile.style.transitionDelay = (i * 0.07) + 's';
   const tc = t.col || '#0F0A00';
-  if (t.photo) {
+  if (t.photo && typeof PHOTOS !== 'undefined' && PHOTOS[t.photo]) {
     tile.style.background = t.bg;
     tile.innerHTML = `
       <div style="position:relative;">
-        <img src="${t.photo}" alt="${t.label}" style="width:100%;display:block;object-fit:cover;max-height:340px;" loading="lazy">
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:1rem 1.2rem;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);">
+        <img src="${PHOTOS[t.photo]}" alt="${t.label}" style="width:100%;display:block;object-fit:cover;max-height:340px;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:1rem 1.2rem;background:linear-gradient(to top,rgba(0,0,0,0.75),transparent);">
           <div style="font-family:'Fraunces',serif;font-style:italic;font-size:18px;color:#fff;font-weight:300;">${t.label}</div>
           <div style="font-family:'Anybody',sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-top:3px;">${t.sub}</div>
         </div>
       </div>`;
   } else {
     tile.style.background = t.bg;
-    tile.innerHTML = `<div class="ti"><div class="te">${t.emoji}</div><div class="tl" style="color:${tc}">${t.label}</div><div class="ts" style="color:${tc}">${t.sub}</div></div>`;
+    tile.innerHTML = `<div class="ti"><div class="te">${t.emoji||'📸'}</div><div class="tl" style="color:${tc}">${t.label}</div><div class="ts" style="color:${tc}">${t.sub}</div></div>`;
   }
   tile.addEventListener('click', e => {
     openLB(t.photo ? '📸' : t.emoji, t.label, t.sub);
