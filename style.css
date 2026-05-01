@@ -292,56 +292,27 @@ body {
   .masonry { columns: 1; }
 }
 
-/* ── FIX BAKED-IN SQUARE / SCREENSHOT ARTIFACTS ── */
-
-/* Base */
-.ptile,
-.vid-card {
-  overflow: hidden;
+/* ── TILE-SPECIFIC OVERRIDE: GUESS ERA ── */
+.ptile.show-face {
   position: relative;
+  overflow: hidden;
+  background: var(--cream);
 }
 
-/* Keep media filling nicely */
-.ptile img,
-.vid-thumb {
-  display: block;
+.ptile.show-face img {
   width: 100%;
-}
-
-/* 1) Remove the square inset box on the RIGHT side */
-.ptile.crop-right-box img,
-.vid-card.crop-right-box .vid-thumb {
-  height: 420px !important;
-  width: 118% !important;
+  height: 430px !important;
   max-width: none !important;
+  display: block;
   object-fit: cover !important;
-  object-position: left center !important;
-  transform: translateX(-6%) !important;
+  object-position: center 10% !important;
+  transform: none !important;
 }
 
-/* 2) Remove the junk/status bar at the TOP */
-.ptile.crop-top-bar img,
-.vid-card.crop-top-bar .vid-thumb {
-  height: 420px !important;
-  width: 104% !important;
-  max-width: none !important;
-  object-fit: cover !important;
-  object-position: center top !important;
-  transform: translateY(-26px) scale(1.02) !important;
-}
-
-/* Mobile tuning */
+/* mobile */
 @media (max-width: 768px) {
-  .ptile.crop-right-box img,
-  .vid-card.crop-right-box .vid-thumb {
+  .ptile.show-face img {
     height: 360px !important;
-    width: 122% !important;
-    transform: translateX(-8%) !important;
-  }
-
-  .ptile.crop-top-bar img,
-  .vid-card.crop-top-bar .vid-thumb {
-    height: 360px !important;
-    transform: translateY(-20px) scale(1.03) !important;
+    object-position: center 8% !important;
   }
 }
