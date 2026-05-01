@@ -317,8 +317,7 @@ body {
   }
 }
 
-/* ── MORE IMAGE SHOWING IN GALLERY ── */
-/* Global fix: make photo tiles taller so more of the image is visible */
+/* ── FULL PHOTO MODE: NO CROPPING ── */
 
 #gallery .masonry {
   columns: 2;
@@ -330,47 +329,22 @@ body {
   overflow: hidden;
   background: var(--cream);
   break-inside: avoid;
+  border: 3px solid var(--dark);
+  border-radius: 16px;
 }
 
-/* Default photo tiles: show more vertical area */
+/* Show the full image. No crop. */
 #gallery .ptile img {
   width: 100% !important;
-  height: 620px !important;              /* was too short before */
-  display: block !important;
-  object-fit: cover !important;
-  object-position: center 8% !important; /* keep more top/face visible */
-  transform: none !important;
+  height: auto !important;
   max-height: none !important;
-  max-width: none !important;
+  display: block !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  transform: none !important;
 }
 
-/* If a tile is extra portrait/selfie-heavy, give it even more room */
-#gallery .ptile.portrait img,
-#gallery .ptile.selfie img,
-#gallery .ptile.extra-tall img {
-  height: 720px !important;
-  object-position: center 5% !important;
-}
-
-/* If a tile is more landscape/wide, slightly shorter is fine */
-#gallery .ptile.wide img {
-  height: 500px !important;
-  object-position: center 12% !important;
-}
-
-/* Caption readability */
-#gallery .ptile::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 34%;
-  background: linear-gradient(to top, rgba(15,10,0,0.62), transparent);
-  pointer-events: none;
-  z-index: 2;
-}
-
+/* Caption stays over the image */
 #gallery .ptile .cap,
 #gallery .ptile .caption,
 #gallery .ptile .photo-copy,
@@ -381,30 +355,33 @@ body {
   z-index: 3;
 }
 
-/* Don't add photo gradient to text/color tiles */
+/* Caption readability */
+#gallery .ptile::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 32%;
+  background: linear-gradient(to top, rgba(15,10,0,0.6), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Text/color tiles should not get photo gradient */
 #gallery .ptile:has(.ti)::after {
   display: none;
 }
 
-/* Tablet */
+/* Mobile */
 @media (max-width: 768px) {
   #gallery .masonry {
     columns: 1;
   }
 
   #gallery .ptile img {
-    height: 520px !important;
-    object-position: center 6% !important;
-  }
-
-  #gallery .ptile.portrait img,
-  #gallery .ptile.selfie img,
-  #gallery .ptile.extra-tall img {
-    height: 620px !important;
-    object-position: center 4% !important;
-  }
-
-  #gallery .ptile.wide img {
-    height: 440px !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
   }
 }
