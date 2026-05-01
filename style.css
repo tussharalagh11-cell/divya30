@@ -317,7 +317,7 @@ body {
   }
 }
 
-/* ── FULL PHOTO MODE: NO CROPPING ── */
+/* ── COMPACT FULL PHOTO MODE: no crop, smaller cards ── */
 
 #gallery .masonry {
   columns: 2;
@@ -327,32 +327,35 @@ body {
 #gallery .ptile {
   position: relative;
   overflow: hidden;
-  background: var(--cream);
+  background: var(--dark);
   break-inside: avoid;
   border: 3px solid var(--dark);
   border-radius: 16px;
 }
 
-/* Show the full image. No crop. */
+/* Full photo, but not massive */
 #gallery .ptile img {
   width: 100% !important;
-  height: auto !important;
-  max-height: none !important;
+  height: 440px !important;
+  max-height: 440px !important;
   display: block !important;
   object-fit: contain !important;
   object-position: center center !important;
   transform: none !important;
+  background: var(--dark);
 }
 
-/* Caption stays over the image */
-#gallery .ptile .cap,
-#gallery .ptile .caption,
-#gallery .ptile .photo-copy,
-#gallery .ptile .overlay {
-  position: absolute;
-  left: 20px;
-  bottom: 16px;
-  z-index: 3;
+/* Optional: make wide/landscape photos shorter */
+#gallery .ptile.wide img {
+  height: 360px !important;
+  max-height: 360px !important;
+}
+
+/* Optional: only portrait photos get a bit more room */
+#gallery .ptile.portrait img,
+#gallery .ptile.extra-tall img {
+  height: 500px !important;
+  max-height: 500px !important;
 }
 
 /* Caption readability */
@@ -363,9 +366,19 @@ body {
   right: 0;
   bottom: 0;
   height: 32%;
-  background: linear-gradient(to top, rgba(15,10,0,0.6), transparent);
+  background: linear-gradient(to top, rgba(15,10,0,0.68), transparent);
   pointer-events: none;
   z-index: 2;
+}
+
+#gallery .ptile .cap,
+#gallery .ptile .caption,
+#gallery .ptile .photo-copy,
+#gallery .ptile .overlay {
+  position: absolute;
+  left: 20px;
+  bottom: 16px;
+  z-index: 3;
 }
 
 /* Text/color tiles should not get photo gradient */
@@ -380,8 +393,18 @@ body {
   }
 
   #gallery .ptile img {
-    width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important;
+    height: 390px !important;
+    max-height: 390px !important;
+  }
+
+  #gallery .ptile.portrait img,
+  #gallery .ptile.extra-tall img {
+    height: 460px !important;
+    max-height: 460px !important;
+  }
+
+  #gallery .ptile.wide img {
+    height: 320px !important;
+    max-height: 320px !important;
   }
 }
