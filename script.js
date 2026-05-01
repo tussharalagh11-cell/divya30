@@ -74,7 +74,7 @@ const tiles = [
   { photo: 'p01', label: 'The GUESS era', sub: 'Pink was always right', bg: '#FFD600' },
   { photo: 'p05', label: 'Holi', sub: 'Colour on colour on colour', bg: '#00C9B1' },
   { photo: 'p25', label: 'Navratri red', sub: 'That smile at the garba', bg: '#FF3CAC' },
-  { photo: 'p02', label: 'Navratri white', sub: 'Day 2 — White ♡', bg: '#3B6EF8' },
+  { photo: 'p02', label: 'Navratri white', sub: 'Navratri ♡', bg: '#3B6EF8' },
   { photo: 'p04', label: 'Green lehenga', sub: 'Effortlessly stunning', bg: '#FF5C1A' },
   { photo: 'p06', label: 'The lehenga II', sub: 'She wore it like a queen', bg: '#AAEE44' },
   { photo: 'p16', label: 'Orange lehenga', sub: 'She showed up', bg: '#FF3CAC' },
@@ -93,7 +93,7 @@ const tiles = [
   { photo: 'p39', label: 'Burger & smiles', sub: 'Michael Kors & fries', bg: '#FF3CAC' },
   { photo: 'p19', label: 'Dinner out', sub: 'That laugh mid-bite', bg: '#FF5C1A' },
   { photo: 'p34', label: 'Breakfast laugh', sub: 'Hand over mouth, hotel brunch', bg: '#FFD600' },
-  { photo: 'p17', label: 'Pizza in Europe', sub: 'Hiding nothing but joy', bg: '#00C9B1' },
+  { photo: 'p17', label: 'Pizza in Almonte', sub: 'Hiding nothing but joy', bg: '#00C9B1' },
   { photo: 'p18', label: 'Gas station', sub: 'Sunglasses on head, always', bg: '#3B6EF8' },
 
   { photo: 'p36', label: 'Bear ears filter', sub: 'Lying down, pure cuteness', bg: '#FF3CAC' },
